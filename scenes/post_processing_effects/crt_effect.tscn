@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://blbams3bsbfjm"]
+
+[ext_resource type="Shader" uid="uid://bdp5tshwkl6rw" path="res://shaders/crt_shader.gdshader" id="1_n807c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2865m"]
+shader = ExtResource("1_n807c")
+shader_parameter/crt_curve = 0.02
+shader_parameter/crt_scan_line_color = 0.347
+shader_parameter/scan_line_count = 720.0
+shader_parameter/aperture_grille_rate = 0.4
+shader_parameter/rf_switch_esque_blur = 1.0
+shader_parameter/white_noise_rate = 0.0
+
+[node name="CRTEffect" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2865m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
