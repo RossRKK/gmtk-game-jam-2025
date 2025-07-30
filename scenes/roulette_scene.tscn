@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhyms0lpvrve6"]
+
+[ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
+[ext_resource type="PackedScene" uid="uid://r5abxcpmk0i7" path="res://scenes/roulette_wheel.tscn" id="2_bivp3"]
+
+[node name="RouletteScene" type="Node2D"]
+
+[node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
+visible = false
+
+[node name="RouletteWheel" parent="." instance=ExtResource("2_bivp3")]
+position = Vector2(398, 318)
