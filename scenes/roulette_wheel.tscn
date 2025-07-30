@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://r5abxcpmk0i7"]
+[gd_scene load_steps=6 format=3 uid="uid://r5abxcpmk0i7"]
 
-[ext_resource type="Script" uid="uid://crspto8xpllg5" path="res://roulette_wheel.gd" id="1_7td6c"]
+[ext_resource type="Script" uid="uid://crspto8xpllg5" path="res://scripts/roulette_wheel/roulette_wheel.gd" id="1_7td6c"]
 [ext_resource type="Texture2D" uid="uid://cpcq1yfsgc6we" path="res://icon.svg" id="2_yknb5"]
+[ext_resource type="Script" uid="uid://bpkca7p7wyc10" path="res://scripts/roulette_wheel/segment_handler.gd" id="3_yknb5"]
 
 [sub_resource type="Curve" id="Curve_7td6c"]
 _limits = [0.0, 10.0, -0.1, 1.0]
@@ -36,5 +37,8 @@ offset_top = -24.0
 offset_right = 194.0
 offset_bottom = 4.0
 text = "Spin!"
+
+[node name="SegmentHandler" type="Node2D" parent="."]
+script = ExtResource("3_yknb5")
 
 [connection signal="pressed" from="Button" to="." method="_start_spin"]

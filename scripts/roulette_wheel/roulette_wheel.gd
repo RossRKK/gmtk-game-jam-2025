@@ -5,10 +5,13 @@ extends Node2D
 @onready var spin_timer: Timer = $SpinTimer
 @onready var sprite: AnimatedSprite2D = $WheelBaseSprite
 
+@onready var segment_handler: SegmentHandler = $SegmentHandler
+
 # signal that will be emitted when the wheel stops spinning
 signal wheel_stopped
 
-var spinning = false
+var spinning: bool = false
+var ball: Ball
 
 func _start_spin() -> void:
 	spinning = true
@@ -18,9 +21,10 @@ func _start_spin() -> void:
 
 func _stop_spin() -> void:
 	spinning = false
-	#TODO pick a cell at random (taking any effects into account)
-	#TODO apply the effect of the cell we landed on
-	wheel_stopped.emit()
+	# pick a cell at random (taking any effects into account)
+	var segment: Segment = segment_handler.pick_and_apply_segment(ball)
+	# apply the effect of the cell we landed on
+	wheel_stopped.emit(segment)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
