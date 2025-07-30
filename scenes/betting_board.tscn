@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://cciepqx17ef51"]
+
+[ext_resource type="Script" uid="uid://dsdw1682571ug" path="res://scripts/betting_board.gd" id="1_1edxy"]
+
+[node name="BettingBoard" type="Node2D"]
+script = ExtResource("1_1edxy")
+
+[node name="Down" type="Button" parent="."]
+offset_left = 12.0
+offset_top = 94.0
+offset_right = 91.0
+offset_bottom = 125.0
+text = "⬇"
+
+[node name="Up" type="Button" parent="."]
+offset_left = 12.0
+offset_top = 1.0
+offset_right = 91.0
+offset_bottom = 32.0
+text = "⬆
+"
+
+[node name="Black" type="Button" parent="."]
+offset_left = 292.0
+offset_top = 13.0
+offset_right = 371.0
+offset_bottom = 44.0
+text = "Black"
+
+[node name="Red" type="Button" parent="."]
+offset_left = 151.0
+offset_top = 13.0
+offset_right = 230.0
+offset_bottom = 44.0
+text = "Red
+"
+
+[node name="Odd" type="Button" parent="."]
+offset_left = 291.0
+offset_top = 79.0
+offset_right = 370.0
+offset_bottom = 110.0
+text = "Odd"
+
+[node name="Even" type="Button" parent="."]
+offset_left = 151.0
+offset_top = 78.0
+offset_right = 230.0
+offset_bottom = 109.0
+text = "Even
+"
+
+[node name="SpinButton" type="Button" parent="."]
+offset_left = 422.0
+offset_top = 78.0
+offset_right = 501.0
+offset_bottom = 109.0
+text = "Spin!"
+
+[node name="BetText" type="RichTextLabel" parent="."]
+offset_left = 1.0
+offset_top = 47.0
+offset_right = 107.0
+offset_bottom = 76.0
+text = "$100"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Down" to="." method="decrease_bet"]
+[connection signal="pressed" from="Up" to="." method="increase_bet"]
+[connection signal="pressed" from="Black" to="." method="bet_black"]
+[connection signal="pressed" from="Red" to="." method="bet_red"]
+[connection signal="pressed" from="Odd" to="." method="bet_odd"]
+[connection signal="pressed" from="Even" to="." method="bet_even"]
+[connection signal="pressed" from="SpinButton" to="." method="on_submit_bet"]

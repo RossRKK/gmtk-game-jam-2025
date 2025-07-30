@@ -13,7 +13,7 @@ signal wheel_stopped
 var spinning: bool = false
 var ball: Ball
 
-func _start_spin() -> void:
+func _start_spin(bet: BettingBoard.BetType, bet_value: int) -> void:
 	spinning = true
 	spin_timer.start()
 	spin_timer.timeout.connect(_stop_spin)

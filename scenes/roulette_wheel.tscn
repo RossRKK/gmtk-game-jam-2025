@@ -25,20 +25,12 @@ script = ExtResource("1_7td6c")
 spin_curve = SubResource("Curve_7td6c")
 
 [node name="WheelBaseSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4.11133, 4.11133)
 sprite_frames = SubResource("SpriteFrames_cjovd")
 
 [node name="SpinTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[node name="Button" type="Button" parent="."]
-offset_left = 90.0
-offset_top = -24.0
-offset_right = 194.0
-offset_bottom = 4.0
-text = "Spin!"
-
 [node name="SegmentHandler" type="Node2D" parent="."]
 script = ExtResource("3_yknb5")
-
-[connection signal="pressed" from="Button" to="." method="_start_spin"]
