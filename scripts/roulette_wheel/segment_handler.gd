@@ -27,7 +27,7 @@ func random_segment() -> Segment:
 	return segments[random.randi() % segments.size()] as Segment
 	
 	
-func pick_and_apply_segment(ball: Ball) -> Segment:
+func pick_and_apply_segment(bet: Bet, ball: Ball) -> Segment:
 	var segment: Segment = random_segment()
-	segment.apply_landed_effect(ball)
+	segment.apply_landed_effect(bet, ball)
 	return segment

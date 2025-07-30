@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func apply_landed_effect(ball: Ball):
+func apply_landed_effect(bet: Bet, ball: Ball):
 	print("%s %d" % ["Red" if colour else "Black", number])
-	pass
+	bet.resolve(self)
+		

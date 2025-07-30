@@ -1,5 +1,7 @@
 extends Node2D
 
+var event_bus = EventBus
+
 @export var spin_curve: Curve = Curve.new()
 
 @onready var spin_timer: Timer = $SpinTimer
@@ -12,19 +14,21 @@ extends Node2D
 
 var spinning: bool = false
 var ball: Ball
+var bet: Bet  = null
 
-func _start_spin(bet: BettingBoard.BetType, bet_value: int) -> void:
+func _start_spin(b: Bet) -> void:
+	bet = b
 	spinning = true
 	spin_timer.start()
 	spin_timer.timeout.connect(_stop_spin)
-	EventBus.spin_start.emit()
+	event_bus.spin_start.emit()
 
 
 func _stop_spin() -> void:
 	spinning = false
-	EventBus.spin_complete.emit()
+	event_bus.spin_complete.emit()
 	# pick a cell at random (taking any effects into account)
-	var segment: Segment = segment_handler.pick_and_apply_segment(ball)
+	var segment: Segment = segment_handler.pick_and_apply_segment(bet, ball)
 	
 
 # Called when the node enters the scene tree for the first time.
