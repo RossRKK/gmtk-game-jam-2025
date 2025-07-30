@@ -1,9 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cicyxqgg7jpib"]
+[gd_scene load_steps=7 format=3 uid="uid://cicyxqgg7jpib"]
 
 [ext_resource type="Texture2D" uid="uid://cpcq1yfsgc6we" path="res://icon.svg" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://bonhawu4hhovo" path="res://assets/png/chip-black.png" id="2_0e48y"]
+[ext_resource type="Shader" uid="uid://cng7ouml8sp2p" path="res://shaders/holo.gdshader" id="2_epypp"]
+[ext_resource type="Texture2D" uid="uid://25re5rcljixo" path="res://assets/png/chip-red.png" id="4_0hol4"]
+[ext_resource type="Texture2D" uid="uid://dxt7fbm7mxhks" path="res://assets/png/wheel.png" id="5_q6r6c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hol4"]
+shader = ExtResource("2_epypp")
+shader_parameter/influence = 0.2
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(172, 94)
 texture = ExtResource("1_wtcfe")
+
+[node name="Chip-black" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0hol4")
+position = Vector2(836, 248)
+texture = ExtResource("2_0e48y")
+
+[node name="Chip-red" type="Sprite2D" parent="."]
+position = Vector2(631, 240)
+texture = ExtResource("4_0hol4")
+
+[node name="Wheel" type="Sprite2D" parent="."]
+position = Vector2(258, 492)
+texture = ExtResource("5_q6r6c")

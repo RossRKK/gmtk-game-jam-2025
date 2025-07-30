@@ -20,7 +20,7 @@ uniform float rf_switch_esque_blur : hint_range( 0.0, 1.0 ) = 1.0;
 uniform float white_noise_rate : hint_range( 0.0, 1.0 ) = 0.0;
 
 float random( vec2 pos )
-{ 
+{
     return fract(sin(dot(pos, vec2(12.9898,78.233))) * 43758.5453);
 }
 
@@ -31,10 +31,10 @@ void fragment( )
     vec2 crt_curve_scale = vec2( 1.0, 1.0 ) + crt_curve_shift * 2.0;
     vec2 texture_fixed_uv = UV * crt_curve_scale - crt_curve_shift;
     vec2 fixed_uv = SCREEN_UV * crt_curve_scale - crt_curve_shift;
-    
+
     // Hide out-of-bounds areas
     float enable_color = float( 0.0 <= texture_fixed_uv.x && texture_fixed_uv.x <= 1.0 && 0.0 <= texture_fixed_uv.y && texture_fixed_uv.y <= 1.0 );
-    
+
     // Get original color from glass curvature + RF switch-like blur
     COLOR.rgb = (
         (
@@ -50,11 +50,11 @@ void fragment( )
         )
     ) * enable_color;
     COLOR.a = 1.0;
-    
+
     // ------------------------------------------------
     // Below is per-pixel processing on the aperture grille
     vec2 aperture_grille_pixel = vec2( floor( ( fixed_uv.x / SCREEN_PIXEL_SIZE.x ) / 3.0 ) * 3.0, fixed_uv.y );
-    
+
     // White noise
     float white_noise = random( aperture_grille_pixel + vec2( sin( TIME * 0.543254 ), cos( TIME * 0.254323563 ) ) );
     COLOR.rgb = mix(
@@ -62,7 +62,7 @@ void fragment( )
     ,    vec3( white_noise, white_noise, white_noise )
     ,    white_noise_rate * enable_color
     );
-    
+
     // Aperture grille reproduction
     float aperture_grille_point = mod( ( ( SCREEN_UV.x * crt_curve_scale.x ) - crt_curve_shift.x ) / SCREEN_PIXEL_SIZE.x, 3.0 );
     float aperture_grille_r_rate = clamp( 1.0 - aperture_grille_point, 0.0, 1.0 ) + clamp( aperture_grille_point - 2.0, 0.0, 1.0 );
@@ -80,16 +80,15 @@ void fragment( )
     ,    vec4( 0.0, 0.0, 0.0, 0.0 )
     ,    vec4( 1.0, 1.0, 1.0, 1.0 )
     );
-    
+
     // Configurable scan lines
     float screen_height_in_pixels = 1.0 / SCREEN_PIXEL_SIZE.y;
     float scan_line_spacing = screen_height_in_pixels / scan_line_count;
     float current_scan_line = floor(fixed_uv.y / SCREEN_PIXEL_SIZE.y / scan_line_spacing);
-    
+
     COLOR = mix(
         COLOR
     ,    vec4( 0.0, 0.0, 0.0, 1.0 )
     ,    float( 0 == int( current_scan_line ) % 2 ) * crt_scan_line_color
     );
 	}
-	
