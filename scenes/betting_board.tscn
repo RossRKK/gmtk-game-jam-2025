@@ -62,7 +62,7 @@ offset_left = 1.0
 offset_top = 47.0
 offset_right = 107.0
 offset_bottom = 76.0
-text = "$100"
+text = "$$$$"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Down" to="." method="decrease_bet"]
