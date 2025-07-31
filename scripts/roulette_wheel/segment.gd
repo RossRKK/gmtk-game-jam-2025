@@ -7,6 +7,16 @@ enum RouletteColour {
 	Zero,
 }
 
+func get_colour_for_roulette_colour(seg_colour: RouletteColour) -> Color:
+	if seg_colour == RouletteColour.Red:
+		return Color(1, 0, 0)
+	if seg_colour == RouletteColour.Black:
+		return Color(0, 0, 0)
+	if seg_colour == RouletteColour.Zero:
+		return Color(0, 1, 0)
+		
+	return Color(1, 0, 1)
+
 var game: Game = Game.get_instance()
 
 @export var colour: RouletteColour
@@ -29,7 +39,7 @@ func _init(col: RouletteColour, num: int, i: int):
 func _ready() -> void:
 	sprite = Sprite2D.new()
 	sprite.texture = load("res://assets/png/segment.png")
-	sprite.modulate = Color(0, 0, 1)
+	sprite.modulate = get_colour_for_roulette_colour(colour)
 	add_child(sprite)
 
 

@@ -10,8 +10,12 @@ var random = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(game.WHEEL_SIZE):
-		var colour: Segment.RouletteColour = Segment.RouletteColour.Black if i % 2 == 0 else Segment.RouletteColour.Red
-		add_child(Segment.new(colour, i, i))
+		if i == 0 or i == game.WHEEL_SIZE/2:
+			var colour: Segment.RouletteColour = Segment.RouletteColour.Zero
+			add_child(Segment.new(colour, 0, i))
+		else:
+			var colour: Segment.RouletteColour = Segment.RouletteColour.Black if i % 2 == 0 else Segment.RouletteColour.Red
+			add_child(Segment.new(colour, i, i))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
