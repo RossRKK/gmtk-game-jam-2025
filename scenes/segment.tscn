@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0748sptbqps6"]
+
+[ext_resource type="Texture2D" uid="uid://di5hd8wapd7et" path="res://assets/png/segment.png" id="1_ekkcu"]
+[ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="2_nac3j"]
+
+[node name="SegmentScene" type="Node2D"]
+
+[node name="SegmentSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_ekkcu")
+
+[node name="SegmentLabel" type="RichTextLabel" parent="."]
+offset_left = -24.0
+offset_top = -239.0
+offset_right = 26.0
+offset_bottom = -199.0
+theme = ExtResource("2_nac3j")
+text = "9
+"
+horizontal_alignment = 1

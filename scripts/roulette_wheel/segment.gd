@@ -19,11 +19,23 @@ func get_colour_for_roulette_colour(seg_colour: RouletteColour) -> Color:
 
 var game: Game = Game.get_instance()
 
-@export var colour: RouletteColour
-@export var number: int
+@export var colour: RouletteColour:
+	set(value):
+		colour = value
+		if sprite:
+			sprite.modulate = get_colour_for_roulette_colour(colour)
+			
+@export var number: int:
+	set(value):
+		number = value
+		if number_text:
+			number_text.text = get_label()
+
 @export var segment_effect: SegmentEffect
 
 var sprite: Sprite2D
+
+var number_text: RichTextLabel
 
 var index: int
 
@@ -34,13 +46,23 @@ func _init(col: RouletteColour, num: int, i: int):
 	index = i
 	rotation = i * (2 * PI / game.WHEEL_SIZE)
 	
+func get_label() -> String:
+	if number == 0 and index != 0:
+		return "00"
+		
+	return "%d" % number
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	sprite = Sprite2D.new()
-	sprite.texture = load("res://assets/png/segment.png")
+	var scene = load("res://scenes/segment.tscn").instantiate()
+	add_child(scene)
+	
+	sprite = scene.get_node("SegmentSprite")
+	number_text = scene.get_node("SegmentLabel")
+	
 	sprite.modulate = get_colour_for_roulette_colour(colour)
-	add_child(sprite)
+	number_text.text = get_label()
+
 
 
 func apply_landed_effect(bet: Bet, ball: Ball):
