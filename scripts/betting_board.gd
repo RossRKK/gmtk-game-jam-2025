@@ -3,6 +3,8 @@ extends Node2D
 
 var game: Game = Game.get_instance()
 
+signal submit_bet(bets: Array[Bet])
+
 @onready var bet_zones = [$RedBet, $BlackBet, $EvenBet, $OddBet, $ZeroBet]
 
 var total_bet: int:
@@ -36,4 +38,12 @@ func _on_bet_updated(bet: Bet) -> void:
 		total_bet = _total_bet
 	else:
 		total_bet = 0
-	
+
+func _on_spin_button_pressed() -> void:
+	var bets: Array[Bet] = []
+	if bet_zones:
+		for bz in bet_zones:
+			var bet_zone = bz as BetZone
+			bet_zone.lock()
+			bets.append(bet_zone.bet)
+		submit_bet.emit(bets)

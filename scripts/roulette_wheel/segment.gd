@@ -65,10 +65,10 @@ func _ready() -> void:
 
 
 
-func apply_landed_effect(bet: Bet, ball: Ball):
+func apply_landed_effect(bets: Array[Bet], ball: Ball):
 	print("%s %d" % ["Red" if colour else "Black", number])
 	
-	bet = segment_effect.apply_bet_muliplication(bet)
-		
-	bet.resolve(self)
+	for bet in bets:
+		bet = segment_effect.apply_bet_muliplication(bet)
+		bet.resolve(self)
 		

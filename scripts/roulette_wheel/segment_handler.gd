@@ -32,17 +32,12 @@ func random_segment() -> Segment:
 	# allow segments to effect the distribution
 	var segment_curves: Array[Curve] = []
 	for child in get_children():
-		print("Child name: ", child.name)
-		print("Child type: ", child.get_class())
-		print("Child script: ", child.get_script())
-		print("Is Segment: ", child is Segment)
-		print("---")
 		segment_curves.append(get_segment_curve(child))
 	var selected_segment_index = DistributionRNG.random_with_distribution(segment_curves, game.WHEEL_SIZE)
 	return get_children()[selected_segment_index]
 	
 	
-func pick_and_apply_segment(bet: Bet, ball: Ball) -> Segment:
+func pick_and_apply_segment(bets: Array[Bet], ball: Ball) -> Segment:
 	var segment: Segment = random_segment()
-	segment.apply_landed_effect(bet, ball)
+	segment.apply_landed_effect(bets, ball)
 	return segment

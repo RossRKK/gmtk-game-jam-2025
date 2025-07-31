@@ -18,10 +18,10 @@ var game: Game = Game.get_instance()
 # signal that will be emitted when the wheel stops spinning
 var spinning: bool = false
 var ball: Ball
-var bet: Bet
+var bets: Array[Bet]
 
-func _start_spin(b: Bet) -> void:
-	bet = b
+func _start_spin(bs: Array[Bet]) -> void:
+	bets = bs
 	spinning = true
 	spin_timer.start()
 	spin_timer.timeout.connect(_stop_spin)
@@ -35,7 +35,7 @@ func _stop_spin() -> void:
 	spinning = false
 	game.event_bus.spin_complete.emit()
 	# pick a cell at random (taking any effects into account)
-	var segment: Segment = segment_handler.pick_and_apply_segment(bet, ball)
+	var segment: Segment = segment_handler.pick_and_apply_segment(bets, ball)
 	
 
 # Called when the node enters the scene tree for the first time.
