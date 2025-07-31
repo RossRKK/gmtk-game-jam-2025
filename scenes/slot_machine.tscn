@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ygriw6svhfvb"]
+
+[ext_resource type="Texture2D" uid="uid://qc4paeh73wm5" path="res://assets/png/slot.png" id="1_xixe3"]
+
+[node name="SlotMachine" type="Node2D"]
+
+[node name="SlotMachineSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_xixe3")
