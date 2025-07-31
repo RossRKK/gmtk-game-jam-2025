@@ -39,7 +39,7 @@ func update_bet_text() -> void:
 	bet_text.text = "%d" % bet.bet_amount
 
 func reset() -> void:
-	bet = Bet.new(bet_increment, bet_type)
+	bet = Bet.new(0, bet_type)
 	update_bet_text()
 	set_button_state()
 

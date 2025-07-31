@@ -7,8 +7,8 @@ func _ready() -> void:
 	game.event_bus.announce_result.connect(update_result_text)
 
 
-func update_result_text(won: bool, segment: Segment, winnings: int) -> void:
-	text = "You %s $%d on %s %d" % ["won" if won else "lost", winnings, "red" if segment.colour == segment.RouletteColour.Red else "black", segment.number]
+func update_result_text(segment: Segment, winnings: int) -> void:
+	text = "%s %s$%d" % [segment.format_name(), "-" if winnings < 0 else "", abs(winnings)]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

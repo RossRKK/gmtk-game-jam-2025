@@ -20,7 +20,7 @@ func _init(ba: int, bt: BetType) -> void:
 
 
 
-func resolve(segment: Segment) -> void:
+func resolve(segment: Segment) -> int:
 	var winner = \
 		(bet_type == BetType.Red and segment.colour == Segment.RouletteColour.Red) \
 		or (bet_type == BetType.Black and segment.colour == Segment.RouletteColour.Black) \
@@ -28,11 +28,9 @@ func resolve(segment: Segment) -> void:
 		or (bet_type == BetType.Odd and segment.number % 2 == 1)
 		
 	if winner:
-		print("Winner")
-		game.event_bus.announce_result.emit(true, segment, bet_amount)
 		game.player_inventory.update_money(bet_amount)
+		return bet_amount
 	else:
-		print("Loser")
-		game.event_bus.announce_result.emit(false, segment, bet_amount)
 		game.player_inventory.update_money(-bet_amount)
+		return -bet_amount
 		

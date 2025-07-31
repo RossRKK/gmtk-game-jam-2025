@@ -63,12 +63,17 @@ func _ready() -> void:
 	sprite.modulate = get_colour_for_roulette_colour(colour)
 	number_text.text = get_label()
 
+func format_name() -> String:
+	return "%s %d" % [RouletteColour.keys()[colour], number]
 
 
 func apply_landed_effect(bets: Array[Bet], ball: Ball):
 	print("%s %d" % ["Red" if colour else "Black", number])
 	
+	var total_winnings := 0
 	for bet in bets:
 		bet = segment_effect.apply_bet_muliplication(bet)
-		bet.resolve(self)
+		total_winnings += bet.resolve(self)
+
+	game.event_bus.announce_result.emit(self, total_winnings)
 		
