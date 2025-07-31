@@ -22,6 +22,7 @@ window/size/viewport_height=768
 window/size/window_width_override=2048
 window/size/window_height_override=1536
 window/stretch/mode="viewport"
+window/canvas_textures/default_texture_filter=1
 
 [dotnet]
 
@@ -30,3 +31,4 @@ project/assembly_name="gmtk-game-jam-2025"
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true

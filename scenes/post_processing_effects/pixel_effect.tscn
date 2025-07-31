@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://68ktk7yh4by3"]
+
+[ext_resource type="Shader" uid="uid://d0xaanev2miq5" path="res://scenes/post_processing_effects/pixel_effect.gdshader" id="1_obxqt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3btms"]
+shader = ExtResource("1_obxqt")
+shader_parameter/pixel_size = 2.0
+
+[node name="pixelate" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_3btms")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
