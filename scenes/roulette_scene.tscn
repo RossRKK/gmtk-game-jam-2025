@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhyms0lpvrve6"]
+[gd_scene load_steps=7 format=3 uid="uid://dhyms0lpvrve6"]
 
 [ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
 [ext_resource type="Script" uid="uid://ihpwiim42g6l" path="res://scripts/roulette_scene.gd" id="1_nh752"]
 [ext_resource type="PackedScene" uid="uid://r5abxcpmk0i7" path="res://scenes/roulette_wheel.tscn" id="2_bivp3"]
 [ext_resource type="PackedScene" uid="uid://cciepqx17ef51" path="res://scenes/betting_board.tscn" id="3_iked3"]
+[ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="5_4tu1h"]
 [ext_resource type="Script" uid="uid://bd6fh0c2rceq5" path="res://scripts/result_text.gd" id="5_r8avv"]
 
 [node name="RouletteScene" type="Node2D"]
@@ -18,35 +19,38 @@ mouse_filter = 1
 color = Color(0.295, 0.5, 0.322333, 1)
 
 [node name="RouletteWheel" parent="." instance=ExtResource("2_bivp3")]
-position = Vector2(667, 302)
+position = Vector2(663, 261)
 
 [node name="BettingBoard" parent="." instance=ExtResource("3_iked3")]
-position = Vector2(437, 611)
+position = Vector2(232, 596)
 
 [node name="MoneyLabel" type="RichTextLabel" parent="."]
-offset_left = 306.0
-offset_top = 617.0
-offset_right = 431.0
-offset_bottom = 655.0
+offset_left = 12.0
+offset_top = 609.0
+offset_right = 208.0
+offset_bottom = 666.0
+theme = ExtResource("5_4tu1h")
 text = "Available $:"
 horizontal_alignment = 1
 
 [node name="MoneyText" type="RichTextLabel" parent="."]
-offset_left = 306.0
-offset_top = 657.0
-offset_right = 431.0
-offset_bottom = 695.0
+offset_left = 57.0
+offset_top = 670.0
+offset_right = 182.0
+offset_bottom = 727.0
+theme = ExtResource("5_4tu1h")
 text = "$$$$"
 horizontal_alignment = 1
 
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
-visible = false
 
 [node name="Resulttext" type="RichTextLabel" parent="."]
-offset_left = 520.0
-offset_top = 545.0
-offset_right = 789.0
-offset_bottom = 585.0
+offset_left = 354.0
+offset_top = 508.0
+offset_right = 1005.0
+offset_bottom = 586.0
+theme = ExtResource("5_4tu1h")
+horizontal_alignment = 1
 script = ExtResource("5_r8avv")
 
 [connection signal="submit_bet" from="BettingBoard" to="RouletteWheel" method="_start_spin"]

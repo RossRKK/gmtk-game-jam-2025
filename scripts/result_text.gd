@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func update_result_text(won: bool, segment: Segment, winnings: int) -> void:
-	text = "You %s %d on %s %d" % ["won" if won else "lost", winnings, "red" if segment.colour == segment.RouletteColour.Red else "black", segment.number]
+	text = "You %s $%d on %s %d" % ["won" if won else "lost", winnings, "red" if segment.colour == segment.RouletteColour.Red else "black", segment.number]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
