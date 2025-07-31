@@ -7,6 +7,7 @@ var game: Game = Game.get_instance()
 
 @onready var spin_timer: Timer = $SpinTimer
 @onready var sprite: AnimatedSprite2D = $WheelBaseSprite
+@onready var spin_sfx: AudioStreamPlayer2D = $SpinSFX
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
@@ -22,7 +23,10 @@ func _start_spin(b: Bet) -> void:
 	spinning = true
 	spin_timer.start()
 	spin_timer.timeout.connect(_stop_spin)
+	spin_sfx.play()
+	
 	game.event_bus.spin_start.emit()
+	
 
 
 func _stop_spin() -> void:
