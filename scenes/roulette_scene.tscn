@@ -26,8 +26,8 @@ position = Vector2(232, 596)
 
 [node name="MoneyLabel" type="RichTextLabel" parent="."]
 offset_left = 12.0
-offset_top = 609.0
-offset_right = 208.0
+offset_top = 635.0
+offset_right = 232.0
 offset_bottom = 666.0
 theme = ExtResource("5_4tu1h")
 text = "Available $:"

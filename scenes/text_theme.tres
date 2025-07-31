@@ -1,4 +1,7 @@
-[gd_resource type="Theme" format=3 uid="uid://774qwrnpcvo5"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://774qwrnpcvo5"]
+
+[ext_resource type="FontFile" uid="uid://fprp213ouhb2" path="res://assets/upheavtt.ttf" id="1_8j8te"]
 
 [resource]
+default_font = ExtResource("1_8j8te")
 default_font_size = 32
