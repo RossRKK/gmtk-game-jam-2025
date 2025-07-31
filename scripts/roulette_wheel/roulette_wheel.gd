@@ -23,6 +23,7 @@ var bets: Array[Bet]
 
 var result_segment: Segment
 var target_rotation: float = 0.
+var ball_initial_roation: float
 
 func _start_spin(bs: Array[Bet]) -> void:
 	bets = bs
@@ -32,6 +33,8 @@ func _start_spin(bs: Array[Bet]) -> void:
 	spin_sfx.play()
 	
 	result_segment = segment_handler.random_segment()
+	
+	var ball_initial_roation = $BallSprite.position.angle()
 	
 	target_rotation = Segment.get_roation_for_index(result_segment.index)
 	
@@ -62,7 +65,4 @@ func _process(delta: float) -> void:
 		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		
-		var ball_speed_at_time = ball_curve.sample(normalised_time)
-		var target_speed = (ball_speed_at_time * normalised_time) + (speed_at_time * (1 - normalised_time))
-		
-		$BallSprite.position = Vector2.UP.rotated(target_rotation * target_speed) * 160
+		$BallSprite.position = Vector2.UP.rotated(lerp_angle(ball_initial_roation, target_rotation, ball_curve.sample(normalised_time))) * 160

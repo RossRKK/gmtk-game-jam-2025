@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://do22dud8xpk4i" path="res://assets/png/ball_base.png" id="5_61irv"]
 
 [sub_resource type="Curve" id="Curve_tesrp"]
-_limits = [0.99, 1.5, 0.0, 1.0]
-_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(0.473545, 1.19049), -0.888012, -0.888012, 0, 0, Vector2(1, 0.99), -0.652687, 0.0, 0, 0]
+_data = [Vector2(0, 0), -0.0104387, -0.0104387, 0, 0, Vector2(0.886243, 1), 0.761001, 0.761001, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjovd"]
