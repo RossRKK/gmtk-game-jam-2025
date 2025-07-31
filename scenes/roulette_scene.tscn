@@ -19,7 +19,7 @@ mouse_filter = 1
 color = Color(0.295, 0.5, 0.322333, 1)
 
 [node name="RouletteWheel" parent="." instance=ExtResource("2_bivp3")]
-position = Vector2(663, 261)
+position = Vector2(722, 287)
 wobble_frequency = 100.0
 wobble_amplitude = 0.05
 

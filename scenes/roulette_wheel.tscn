@@ -25,17 +25,16 @@ animations = [{
 script = ExtResource("1_7td6c")
 spin_curve = SubResource("Curve_7td6c")
 
+[node name="SegmentHandler" type="Node2D" parent="."]
+script = ExtResource("3_yknb5")
+
 [node name="WheelBaseSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.00003, 1)
-scale = Vector2(0.885254, 0.885254)
 sprite_frames = SubResource("SpriteFrames_cjovd")
 
 [node name="SpinTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
-
-[node name="SegmentHandler" type="Node2D" parent="."]
-script = ExtResource("3_yknb5")
 
 [node name="SpinSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_cjovd")

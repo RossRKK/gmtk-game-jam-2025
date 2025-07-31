@@ -16,8 +16,6 @@ var game: Game = Game.get_instance()
 
 
 # signal that will be emitted when the wheel stops spinning
-
-
 var spinning: bool = false
 var ball: Ball
 var bet: Bet
@@ -51,7 +49,7 @@ func _process(delta: float) -> void:
 		var normalised_time = 1 - (spin_timer.time_left / spin_timer.wait_time)
 		var speed_at_time = spin_curve.sample(normalised_time) # rotations per second
 		var rotation_this_frame = 2 * PI * delta * speed_at_time # distance to move at this speed
-		sprite.rotate(rotation_this_frame)
+		self.rotate(rotation_this_frame)
 		
-		sprite.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
-		sprite.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
+		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
+		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
