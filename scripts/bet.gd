@@ -1,17 +1,17 @@
 class_name Bet
 
 enum BetType {
-	Unset,
 	Red,
 	Black,
 	Odd,
 	Even,
+	Zero,
 }
 
 var game: Game = Game.get_instance()
 
-var bet_type: BetType = BetType.Unset
-var bet_amount: int = -1;
+var bet_type: BetType
+var bet_amount: int
 
 
 func _init(ba: int, bt: BetType) -> void:

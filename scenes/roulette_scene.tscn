@@ -25,37 +25,38 @@ wobble_frequency = 100.0
 wobble_amplitude = 0.05
 
 [node name="BettingBoard" parent="." instance=ExtResource("3_iked3")]
-position = Vector2(232, 596)
+position = Vector2(263, 523)
+scale = Vector2(0.8, 0.8)
 
 [node name="MoneyLabel" type="RichTextLabel" parent="."]
-offset_left = 12.0
-offset_top = 635.0
-offset_right = 232.0
-offset_bottom = 666.0
+offset_left = 46.0
+offset_top = 625.0
+offset_right = 266.0
+offset_bottom = 656.0
 theme = ExtResource("5_4tu1h")
 text = "Available $:"
 horizontal_alignment = 1
 
 [node name="MoneyText" type="RichTextLabel" parent="."]
-offset_left = 57.0
-offset_top = 670.0
-offset_right = 182.0
-offset_bottom = 727.0
+offset_left = 87.0
+offset_top = 682.0
+offset_right = 212.0
+offset_bottom = 739.0
 theme = ExtResource("5_4tu1h")
 text = "$$$$"
 horizontal_alignment = 1
 
 [node name="pixelate" parent="." instance=ExtResource("2_wwc13")]
+visible = false
 
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
+visible = false
 
 [node name="Resulttext" type="RichTextLabel" parent="."]
-offset_left = 399.0
-offset_top = 546.0
-offset_right = 1006.0
-offset_bottom = 602.0
+offset_left = 5.0
+offset_top = 490.0
+offset_right = 560.0
+offset_bottom = 546.0
 theme = ExtResource("5_4tu1h")
 horizontal_alignment = 1
 script = ExtResource("5_r8avv")
-
-[connection signal="submit_bet" from="BettingBoard" to="RouletteWheel" method="_start_spin"]
