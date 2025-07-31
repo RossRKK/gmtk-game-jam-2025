@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhyms0lpvrve6"]
+[gd_scene load_steps=8 format=3 uid="uid://dhyms0lpvrve6"]
 
 [ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
 [ext_resource type="Script" uid="uid://ihpwiim42g6l" path="res://scripts/roulette_scene.gd" id="1_nh752"]
 [ext_resource type="PackedScene" uid="uid://r5abxcpmk0i7" path="res://scenes/roulette_wheel.tscn" id="2_bivp3"]
+[ext_resource type="PackedScene" uid="uid://68ktk7yh4by3" path="res://scenes/post_processing_effects/pixel_effect.tscn" id="2_wwc13"]
 [ext_resource type="PackedScene" uid="uid://cciepqx17ef51" path="res://scenes/betting_board.tscn" id="3_iked3"]
 [ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="5_4tu1h"]
 [ext_resource type="Script" uid="uid://bd6fh0c2rceq5" path="res://scripts/result_text.gd" id="5_r8avv"]
@@ -44,8 +45,9 @@ theme = ExtResource("5_4tu1h")
 text = "$$$$"
 horizontal_alignment = 1
 
+[node name="pixelate" parent="." instance=ExtResource("2_wwc13")]
+
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
-visible = false
 
 [node name="Resulttext" type="RichTextLabel" parent="."]
 offset_left = 354.0

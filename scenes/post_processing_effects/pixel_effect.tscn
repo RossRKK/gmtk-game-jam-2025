@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://68ktk7yh4by3"]
 
-[ext_resource type="Shader" uid="uid://d0xaanev2miq5" path="res://scenes/post_processing_effects/pixel_effect.gdshader" id="1_obxqt"]
+[ext_resource type="Shader" uid="uid://d0xaanev2miq5" path="res://shaders/pixel_effect.gdshader" id="1_obxqt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3btms"]
 shader = ExtResource("1_obxqt")

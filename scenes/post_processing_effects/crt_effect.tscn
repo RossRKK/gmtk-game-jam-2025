@@ -5,11 +5,11 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2865m"]
 shader = ExtResource("1_n807c")
 shader_parameter/crt_curve = 0.02
-shader_parameter/crt_scan_line_color = 0.156
+shader_parameter/crt_scan_line_color = 0.125
 shader_parameter/scan_line_count = 192.0
-shader_parameter/aperture_grille_rate = 0.4
+shader_parameter/aperture_grille_rate = 0.212
 shader_parameter/rf_switch_esque_blur = 1.0
-shader_parameter/white_noise_rate = 0.0
+shader_parameter/white_noise_rate = 0.05
 
 [node name="CRTEffect" type="CanvasLayer"]
 
