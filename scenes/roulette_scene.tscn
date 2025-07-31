@@ -50,10 +50,10 @@ horizontal_alignment = 1
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
 
 [node name="Resulttext" type="RichTextLabel" parent="."]
-offset_left = 354.0
-offset_top = 508.0
-offset_right = 1005.0
-offset_bottom = 586.0
+offset_left = 399.0
+offset_top = 546.0
+offset_right = 1006.0
+offset_bottom = 602.0
 theme = ExtResource("5_4tu1h")
 horizontal_alignment = 1
 script = ExtResource("5_r8avv")
