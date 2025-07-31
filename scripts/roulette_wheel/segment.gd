@@ -39,12 +39,15 @@ var number_text: RichTextLabel
 
 var index: int
 
+static func get_roation_for_index(index: int) -> float:
+	return index * (2 * PI / Game.get_instance().WHEEL_SIZE)
+
 func _init(col: RouletteColour, num: int, i: int):
 	colour = col
 	number = num
 	segment_effect = SegmentEffect.new()
 	index = i
-	rotation = i * (2 * PI / game.WHEEL_SIZE)
+	rotation = get_roation_for_index(i)
 	
 func get_label() -> String:
 	if number == 0 and index != 0:

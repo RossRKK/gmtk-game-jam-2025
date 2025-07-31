@@ -35,9 +35,3 @@ func random_segment() -> Segment:
 		segment_curves.append(get_segment_curve(child))
 	var selected_segment_index = DistributionRNG.random_with_distribution(segment_curves, game.WHEEL_SIZE)
 	return get_children()[selected_segment_index]
-	
-	
-func pick_and_apply_segment(bets: Array[Bet], ball: Ball) -> Segment:
-	var segment: Segment = random_segment()
-	segment.apply_landed_effect(bets, ball)
-	return segment
