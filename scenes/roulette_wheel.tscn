@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://cv45d7prip4ss" path="res://assets/sound/roulette.mp3" id="4_cjovd"]
 
 [sub_resource type="Curve" id="Curve_7td6c"]
-_limits = [-1.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318408, 12.0995), 0.371695, 0.371695, 0, 0, Vector2(0.756219, -1), 6.5299, 6.5299, 0, 0, Vector2(0.982587, 0), 0.0, 0.0, 0, 0]
+_limits = [-0.05, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318408, 12.0995), 0.371695, 0.371695, 0, 0, Vector2(0.868159, -0.05), 1.22587, 1.22587, 0, 0, Vector2(1, 0.0135288), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjovd"]
