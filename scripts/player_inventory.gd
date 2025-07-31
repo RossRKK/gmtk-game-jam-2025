@@ -19,6 +19,5 @@ func on_money_changed_handler(new_value: int, diff: int) -> void:
 		game.event_bus.game_over.emit()
 
 func update_money(diff: int) -> void:
-	print(diff)
 	available_money += diff
 	on_money_changed.emit(available_money, diff)

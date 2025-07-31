@@ -52,10 +52,21 @@ func get_label() -> String:
 		
 	return "%d" % number
 
+func mouse_entered() -> void:
+	sprite.scale.x = 1.1
+	sprite.scale.y = 1.1
+	
+func mouse_exited() -> void:
+	sprite.scale.x = 1
+	sprite.scale.y = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var scene = load("res://scenes/segment.tscn").instantiate()
 	add_child(scene)
+	
+	scene.mouse_entered.connect(mouse_entered)
+	scene.mouse_exited.connect(mouse_exited)
 	
 	sprite = scene.get_node("SegmentSprite")
 	number_text = scene.get_node("SegmentLabel")
