@@ -15,11 +15,6 @@ run/main_scene="uid://dhyms0lpvrve6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-EventBus="*res://scripts/event_bus.gd"
-PlayerInventory="*res://scripts/player_inventory.gd"
-
 [display]
 
 window/size/viewport_width=1024

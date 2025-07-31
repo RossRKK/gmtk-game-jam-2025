@@ -1,6 +1,8 @@
 extends Node
 
-var event_bus = EventBus
+class_name PlayerInventory
+
+var game: Game = Game.get_instance()
 
 @export var starting_money: int = 10_000
 
@@ -14,7 +16,7 @@ func _ready() -> void:
 func on_money_changed_handler(new_value: int, diff: int) -> void:
 	available_money = new_value
 	if available_money < 0:
-		event_bus.game_over.emit()
+		game.event_bus.game_over.emit()
 
 func update_money(diff: int) -> void:
 	print(diff)

@@ -1,6 +1,7 @@
 extends Node2D
 
-var event_bus = EventBus
+
+var game: Game = Game.get_instance()
 
 @export var spin_curve: Curve = Curve.new()
 
@@ -21,12 +22,12 @@ func _start_spin(b: Bet) -> void:
 	spinning = true
 	spin_timer.start()
 	spin_timer.timeout.connect(_stop_spin)
-	event_bus.spin_start.emit()
+	game.event_bus.spin_start.emit()
 
 
 func _stop_spin() -> void:
 	spinning = false
-	event_bus.spin_complete.emit()
+	game.event_bus.spin_complete.emit()
 	# pick a cell at random (taking any effects into account)
 	var segment: Segment = segment_handler.pick_and_apply_segment(bet, ball)
 	

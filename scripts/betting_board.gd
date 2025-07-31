@@ -2,8 +2,7 @@ extends Node2D
 
 class_name BettingBoard
 
-var player_inventory = PlayerInventory
-var event_bus = EventBus
+var game: Game = Game.get_instance()
 
 @onready var bet_text: RichTextLabel = $BetText
 
@@ -23,8 +22,8 @@ func reset() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	event_bus.spin_complete.connect(reset)
-	player_inventory.on_money_changed.connect(set_button_state)
+	game.event_bus.spin_complete.connect(reset)
+	game.player_inventory.on_money_changed.connect(set_button_state)
 	update_bet_text()
 	set_button_state()
 
@@ -52,7 +51,7 @@ func set_button_state() -> void:
 	elif bet.bet_type == Bet.BetType.Odd:
 		$Odd.disabled = true
 		
-	if bet.bet_amount + bet_increment > PlayerInventory.available_money:
+	if bet.bet_amount + bet_increment > game.player_inventory.available_money:
 		$Up.disabled = true
 		
 	if bet.bet_amount - bet_increment < 0:
@@ -63,7 +62,7 @@ func on_submit_bet() -> void:
 		print("Must set bet before spinning")
 		return
 		
-	if bet.bet_amount > PlayerInventory.available_money:
+	if bet.bet_amount > game.player_inventory.available_money:
 		print("Bet higher than available funds")
 		return
 		

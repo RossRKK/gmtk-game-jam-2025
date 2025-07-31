@@ -8,7 +8,7 @@ enum BetType {
 	Even,
 }
 
-var player_inventory = PlayerInventory
+var game: Game = Game.get_instance()
 
 var bet_type: BetType = BetType.Unset
 var bet_amount: int = -1;
@@ -29,8 +29,10 @@ func resolve(segment: Segment) -> void:
 		
 	if winner:
 		print("Winner")
-		player_inventory.update_money(bet_amount)
+		game.event_bus.announce_result.emit(true, segment, bet_amount)
+		game.player_inventory.update_money(bet_amount)
 	else:
 		print("Loser")
-		player_inventory.update_money(-bet_amount)
+		game.event_bus.announce_result.emit(false, segment, bet_amount)
+		game.player_inventory.update_money(-bet_amount)
 		
