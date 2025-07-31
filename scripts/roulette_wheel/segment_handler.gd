@@ -2,29 +2,34 @@ extends Node2D
 
 class_name SegmentHandler
 
-const NUM_SEGMENTS: int = 24
-
-@onready var segments: Array[Segment] = Array([], TYPE_OBJECT, "Node", Segment) 
+var game: Game = Game.get_instance()
 
 var random = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(NUM_SEGMENTS):
+	for i in range(game.WHEEL_SIZE):
 		var colour: Segment.RouletteColour = Segment.RouletteColour.Black if i % 2 == 0 else Segment.RouletteColour.Red
-		segments.push_back(Segment.new(colour, i))
+		add_child(Segment.new(colour, i))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-
+	
+func get_segment_curve(segment: Segment) -> Curve:
+	return segment.segment_effect.probability_effect
 	
 func random_segment() -> Segment:
-	#TODO allow segments to effect the distribution
-	return segments[random.randi() % segments.size()] as Segment
+	# allow segments to effect the distribution
+	var segment_curves: Array[Curve] = []
+	for child in get_children():
+		assert(child is Segment)
+		segment_curves.append(get_segment_curve(child))
+	var selected_segment_index = DistributionRNG.random_with_distribution(segment_curves, game.WHEEL_SIZE)
+	return get_children()[selected_segment_index]
 	
 	
 func pick_and_apply_segment(bet: Bet, ball: Ball) -> Segment:

@@ -10,14 +10,17 @@ signal submit_bet(Bet)
 
 var bet_increment: int = 100
 
-var bet: Bet = Bet.new(bet_increment, Bet.BetType.Unset)
+var bet: Bet = Bet.new(bet_increment, Bet.BetType.Unset):
+	set(value):
+		bet = value
+		update_bet_text()
 
 func update_bet_text() -> void:
 	bet_text.text = "$%d" % bet.bet_amount
 
 func reset() -> void:
-	print("Reseting buttons")
 	bet = Bet.new(bet_increment, Bet.BetType.Unset)
+	update_bet_text()
 	set_button_state()
 
 # Called when the node enters the scene tree for the first time.

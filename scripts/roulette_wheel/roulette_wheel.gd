@@ -5,18 +5,22 @@ var game: Game = Game.get_instance()
 
 @export var spin_curve: Curve = Curve.new()
 
+@export var wobble_frequency: float = 10
+@export var wobble_amplitude: float = 0.01
+
 @onready var spin_timer: Timer = $SpinTimer
 @onready var sprite: AnimatedSprite2D = $WheelBaseSprite
 @onready var spin_sfx: AudioStreamPlayer2D = $SpinSFX
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
+
 # signal that will be emitted when the wheel stops spinning
 
 
 var spinning: bool = false
 var ball: Ball
-var bet: Bet  = null
+var bet: Bet
 
 func _start_spin(b: Bet) -> void:
 	bet = b
@@ -48,3 +52,6 @@ func _process(delta: float) -> void:
 		var speed_at_time = spin_curve.sample(normalised_time) # rotations per second
 		var rotation_this_frame = 2 * PI * delta * speed_at_time # distance to move at this speed
 		sprite.rotate(rotation_this_frame)
+		
+		sprite.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
+		sprite.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
