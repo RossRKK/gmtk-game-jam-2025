@@ -16,18 +16,32 @@ func _ready() -> void:
 			add_child(Segment.new(colour, random.randi_range(1, game.WHEEL_SIZE - 2), i))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 	
 func get_segment_curve(segment) -> Curve:
 	return segment.segment_effect.probability_effect
 	
-func random_segment() -> Segment:
-	# allow segments to effect the distribution
+func random_segment(ball: RouletteBall) -> Segment:
 	var segment_curves: Array[Curve] = []
 	for child in get_children():
 		segment_curves.append(get_segment_curve(child))
-	var selected_segment_index = DistributionRNG.random_with_distribution(segment_curves, game.WHEEL_SIZE)
+
+	var distribution: Array[float] = []
+	distribution.resize(game.WHEEL_SIZE)
+	distribution.fill(1.)
+
+	for i in game.WHEEL_SIZE:
+		var curve := segment_curves[i]
+		for j in game.WHEEL_SIZE:
+			var effect_index: int = (i + j) % game.WHEEL_SIZE
+
+			var domain_width := curve.max_domain - curve.min_domain
+			var bucket_domain_width := domain_width / game.WHEEL_SIZE
+			var sample_point := curve.min_domain + bucket_domain_width * j
+
+			distribution[effect_index] *= curve.sample(sample_point)
+
+	for i in game.WHEEL_SIZE:
+		distribution[i] *= ball.segment_affinity(get_child(i))
+	
+	var selected_segment_index = random.rand_weighted(distribution)
 	return get_children()[selected_segment_index]

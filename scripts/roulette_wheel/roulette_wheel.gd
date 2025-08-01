@@ -15,6 +15,8 @@ var game: Game = Game.get_instance()
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
+@onready var ball_distance: float = $BallSprite.position.length()
+
 enum WheelState {
 	Spinning,
 	Returning,
@@ -27,12 +29,12 @@ enum WheelState {
 }
 
 var state: WheelState = WheelState.Upright
-var ball: Ball
+var ball: RouletteBall = RouletteBall.new()
 var bets: Array[Bet]
 
 var result_segment: Segment
 var target_rotation: float = 0.
-var ball_initial_rotation: float
+var ball_initial_rotation: float = 0.
 var stop_rotation: float
 
 func _start_spin(bs: Array[Bet]) -> void:
@@ -42,16 +44,12 @@ func _start_spin(bs: Array[Bet]) -> void:
 	$SpinTimer.timeout.connect(_stop_spin)
 	spin_sfx.play()
 	
-	result_segment = segment_handler.random_segment()
-	
-	var ball_initial_rotation = $BallSprite.position.angle()
-	
+	result_segment = segment_handler.random_segment(ball)
+		
 	target_rotation = Segment.get_roation_for_index(result_segment.index)
 	
 	game.event_bus.spin_start.emit()
 	
-
-
 func _stop_spin() -> void:
 	stop_rotation = rotation
 	game.event_bus.spin_complete.emit()
@@ -74,7 +72,7 @@ func get_normalised_time(timer: Timer) -> float:
 func _process(delta: float) -> void:
 	var state_timer: Timer = state_timers.get(state)
 	
-	var normalised_time = get_normalised_time(state_timer) if state_timer != null else 0
+	var normalised_time = get_normalised_time(state_timer) if state_timer != null else 0.0
 	
 	if state == WheelState.Spinning:
 		var speed_at_time = spin_curve.sample(normalised_time)
@@ -82,7 +80,7 @@ func _process(delta: float) -> void:
 		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		
-		$BallSprite.position = Vector2.UP.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))) * 160
+		$BallSprite.position = Vector2.UP.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))) * ball_distance
 	
 	if state == WheelState.Returning:
 		self.rotation = lerp_angle(stop_rotation, 0, return_curve.sample(normalised_time))

@@ -7,23 +7,30 @@ enum RouletteColour {
 	Zero,
 }
 
-func get_colour_for_roulette_colour(seg_colour: RouletteColour) -> Color:
+func get_colour_for_roulette_colour(seg_colour: RouletteColour, highlight: bool) -> Color:
+	var highlight_boost = 0.2 if highlight else 0.
 	if seg_colour == RouletteColour.Red:
-		return Color(1, 0, 0)
+		return Color(0.8 + highlight_boost, 0 + highlight_boost, 0 + highlight_boost)
 	if seg_colour == RouletteColour.Black:
-		return Color(0, 0, 0)
+		return Color(0 + highlight_boost, 0 + highlight_boost, 0 + highlight_boost)
 	if seg_colour == RouletteColour.Zero:
-		return Color(0, 1, 0)
+		return Color(0 + highlight_boost, 0.8 + highlight_boost, 0 + highlight_boost)
 		
-	return Color(1, 0, 1)
+	return Color(0.8, 0, 0.8)
 
 var game: Game = Game.get_instance()
+
+var is_highlighted := false:
+	set(value):
+		is_highlighted = value
+		if sprite:
+			sprite.modulate = get_colour_for_roulette_colour(colour, is_highlighted)
 
 @export var colour: RouletteColour:
 	set(value):
 		colour = value
 		if sprite:
-			sprite.modulate = get_colour_for_roulette_colour(colour)
+			sprite.modulate = get_colour_for_roulette_colour(colour, is_highlighted)
 			
 @export var number: int:
 	set(value):
@@ -39,8 +46,8 @@ var number_text: RichTextLabel
 
 var index: int
 
-static func get_roation_for_index(index: int) -> float:
-	return index * (2 * PI / Game.get_instance().WHEEL_SIZE)
+static func get_roation_for_index(i: int) -> float:
+	return i * (2 * PI / Game.get_instance().WHEEL_SIZE)
 
 func _init(col: RouletteColour, num: int, i: int):
 	colour = col
@@ -56,12 +63,10 @@ func get_label() -> String:
 	return "%d" % number
 
 func mouse_entered() -> void:
-	sprite.scale.x = 1.1
-	sprite.scale.y = 1.1
+	is_highlighted = true
 	
 func mouse_exited() -> void:
-	sprite.scale.x = 1
-	sprite.scale.y = 1
+	is_highlighted = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -74,14 +79,14 @@ func _ready() -> void:
 	sprite = scene.get_node("SegmentSprite")
 	number_text = scene.get_node("SegmentLabel")
 	
-	sprite.modulate = get_colour_for_roulette_colour(colour)
+	sprite.modulate = get_colour_for_roulette_colour(colour, is_highlighted)
 	number_text.text = get_label()
 
 func format_name() -> String:
 	return "%s %d" % [RouletteColour.keys()[colour], number]
 
 
-func apply_landed_effect(bets: Array[Bet], ball: Ball):
+func apply_landed_effect(bets: Array[Bet], ball: RouletteBall):
 	print("%s %d" % ["Red" if colour else "Black", number])
 	
 	var total_winnings := 0

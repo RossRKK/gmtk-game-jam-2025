@@ -51,6 +51,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="BallSprite" type="Sprite2D" parent="."]
-position = Vector2(2.98023e-08, -156)
+position = Vector2(0, -160)
 scale = Vector2(0.492188, 0.492188)
 texture = ExtResource("5_61irv")

@@ -11,6 +11,7 @@ var game: Game = Game.get_instance()
 @export var effect_description: String
 
 @export_category("Probability effect")
+# The sample at 0. on the curve multiplicatively effects the probability of landing on this space, 1. the space clockwise to it, 23. the space 1 anti-clockwise
 @export var probability_effect: Curve = load("res://resources/segment_effects/default_segment_curve.tres").duplicate()
 
 @export_category("Bet Multiplier")
@@ -29,7 +30,9 @@ func apply_bet_muliplication(bet: Bet) -> Bet:
 	var bet_diff = new_bet_amount - bet.bet_amount
 	
 	var cost_to_player = bet_diff * bet_multiplier_cost
+
+	game.player_inventory.update_money(-cost_to_player)
 	
-	bet.bet_amount = new_bet_amount
+	bet.bet_amount = new_bet_amount as int
 	
 	return bet
