@@ -29,7 +29,7 @@ var bet_increment: int = 100
 
 var remaining_funds: int = game.player_inventory.available_money
 
-var bet: Bet = Bet.new(0, bet_type):
+@onready var bet: Bet = Bet.new(0, bet_type):
 	set(value):
 		bet = value
 		update_bet_text()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dsdw1682571ug" path="res://scripts/bet_zone.gd" id="1_wwqtj"]
 [ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="2_1vpie"]
 
-[node name="BetSpace" type="Node2D"]
+[node name="BetZone" type="Node2D"]
 script = ExtResource("1_wwqtj")
 
 [node name="BackDrop" type="ColorRect" parent="."]

@@ -91,8 +91,10 @@ func apply_landed_effect(bets: Array[Bet], ball: RouletteBall):
 	
 	var total_winnings := 0
 	for bet in bets:
+		bet.debug_print()
+		bet = ball.ball_effect(self, bet)
 		bet = segment_effect.apply_bet_muliplication(bet)
 		total_winnings += bet.resolve(self)
-
+		
 	game.event_bus.announce_result.emit(self, total_winnings)
 		

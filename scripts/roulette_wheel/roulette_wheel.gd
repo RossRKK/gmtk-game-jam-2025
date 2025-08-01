@@ -29,7 +29,7 @@ enum WheelState {
 }
 
 var state: WheelState = WheelState.Upright
-var ball: RouletteBall = RouletteBall.new()
+var ball: RouletteBall = ColouredBall.new(Segment.RouletteColour.Red)
 var bets: Array[Bet]
 
 var result_segment: Segment

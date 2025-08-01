@@ -19,20 +19,12 @@ var game: Game = Game.get_instance()
 # See Bet Multiplier Cost for how much this costs the user
 @export var bet_multiplier: float = 1
 
-# How much the muliplier costs.
-# i.e. 1 would cost the user the amount their bet was increased
-# 0 would be free, negative values would give the user more money
-@export var bet_multiplier_cost: float = 1
+# How extra winnings to give the player if they one the bet
+@export var bet_multiplier_bonus: float = 0
 
 
 func apply_bet_muliplication(bet: Bet) -> Bet:
-	var new_bet_amount = bet.bet_amount * bet_multiplier
-	var bet_diff = new_bet_amount - bet.bet_amount
-	
-	var cost_to_player = bet_diff * bet_multiplier_cost
-
-	game.player_inventory.update_money(-cost_to_player)
-	
-	bet.bet_amount = new_bet_amount as int
+	bet.additional_winnings += bet_multiplier_bonus * bet.bet_amount
+	bet.bet_amount *= bet_multiplier	
 	
 	return bet

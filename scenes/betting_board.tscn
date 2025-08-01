@@ -27,25 +27,24 @@ metadata/_edit_use_anchors_ = true
 
 [node name="RedBet" parent="." instance=ExtResource("3_xp68o")]
 position = Vector2(36, 34)
-bet_type = 1
 label_text = "Red"
 background_colour = Color(0.84, 0, 0, 0.529412)
 
 [node name="BlackBet" parent="." instance=ExtResource("3_xp68o")]
 position = Vector2(332, 33)
-bet_type = 2
+bet_type = 1
 label_text = "Black"
 background_colour = Color(0, 0, 0, 0.529412)
 
 [node name="EvenBet" parent="." instance=ExtResource("3_xp68o")]
 position = Vector2(36, 174)
-bet_type = 4
+bet_type = 3
 label_text = "Even"
 background_colour = Color(0, 0.196, 0.84, 0.529412)
 
 [node name="OddBet" parent="." instance=ExtResource("3_xp68o")]
 position = Vector2(332, 173)
-bet_type = 3
+bet_type = 2
 label_text = "Odd"
 background_colour = Color(0.84, 0.546, 0, 0.529412)
 
