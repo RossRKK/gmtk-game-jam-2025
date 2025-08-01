@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
 [ext_resource type="Script" uid="uid://ihpwiim42g6l" path="res://scripts/roulette_scene.gd" id="1_nh752"]
 [ext_resource type="PackedScene" uid="uid://r5abxcpmk0i7" path="res://scenes/roulette_wheel.tscn" id="2_bivp3"]
-[ext_resource type="PackedScene" path="res://scenes/post_processing_effects/pixel_effect.tscn" id="2_wwc13"]
+[ext_resource type="PackedScene" uid="uid://68ktk7yh4by3" path="res://scenes/post_processing_effects/pixel_effect.tscn" id="2_wwc13"]
 [ext_resource type="PackedScene" uid="uid://cciepqx17ef51" path="res://scenes/betting_board.tscn" id="3_iked3"]
 [ext_resource type="PackedScene" uid="uid://ygriw6svhfvb" path="res://scenes/slot_machine.tscn" id="4_wwc13"]
 [ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="5_4tu1h"]
