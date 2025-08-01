@@ -85,8 +85,8 @@ func increase_bet() -> void:
 	
 func decrease_bet() -> void:
 	bet.bet_amount -= bet_increment
-	if bet.bet_amount < bet_increment:
-		bet.bet_amount = bet_increment
+	if bet.bet_amount < 0:
+		bet.bet_amount = 0
 	update_bet_text()
 	set_button_state()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://r5abxcpmk0i7"]
+[gd_scene load_steps=10 format=3 uid="uid://r5abxcpmk0i7"]
 
 [ext_resource type="Script" uid="uid://crspto8xpllg5" path="res://scripts/roulette_wheel/roulette_wheel.gd" id="1_7td6c"]
 [ext_resource type="Curve" uid="uid://bg5v3hh2jl7ww" path="res://resources/roulette_wheel_speed_curve.tres" id="2_tesrp"]
@@ -10,6 +10,10 @@
 [sub_resource type="Curve" id="Curve_tesrp"]
 _data = [Vector2(0, 0), -0.0104387, -0.0104387, 0, 0, Vector2(0.886243, 1), 0.761001, 0.761001, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_j6a7s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjovd"]
 animations = [{
@@ -26,6 +30,7 @@ animations = [{
 script = ExtResource("1_7td6c")
 spin_curve = ExtResource("2_tesrp")
 ball_curve = SubResource("Curve_tesrp")
+return_curve = SubResource("Curve_j6a7s")
 
 [node name="SegmentHandler" type="Node2D" parent="."]
 script = ExtResource("3_yknb5")
@@ -40,6 +45,10 @@ one_shot = true
 
 [node name="SpinSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_cjovd")
+
+[node name="ReturnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="BallSprite" type="Sprite2D" parent="."]
 position = Vector2(2.98023e-08, -156)

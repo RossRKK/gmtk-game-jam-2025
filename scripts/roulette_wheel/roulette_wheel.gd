@@ -5,36 +5,46 @@ var game: Game = Game.get_instance()
 
 @export var spin_curve: Curve = Curve.new()
 @export var ball_curve: Curve = Curve.new()
+@export var return_curve: Curve = Curve.new()
 
 @export var wobble_frequency: float = 10
 @export var wobble_amplitude: float = 0.01
 
-@onready var spin_timer: Timer = $SpinTimer
 @onready var sprite: AnimatedSprite2D = $WheelBaseSprite
 @onready var spin_sfx: AudioStreamPlayer2D = $SpinSFX
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
+enum WheelState {
+	Spinning,
+	Returning,
+	Upright,
+}
 
-# signal that will be emitted when the wheel stops spinning
-var spinning: bool = false
+@onready var state_timers := {
+	WheelState.Spinning: $SpinTimer,
+	WheelState.Returning: $ReturnTimer,
+}
+
+var state: WheelState = WheelState.Upright
 var ball: Ball
 var bets: Array[Bet]
 
 var result_segment: Segment
 var target_rotation: float = 0.
-var ball_initial_roation: float
+var ball_initial_rotation: float
+var stop_rotation: float
 
 func _start_spin(bs: Array[Bet]) -> void:
 	bets = bs
-	spinning = true
-	spin_timer.start()
-	spin_timer.timeout.connect(_stop_spin)
+	state = WheelState.Spinning
+	$SpinTimer.start()
+	$SpinTimer.timeout.connect(_stop_spin)
 	spin_sfx.play()
 	
 	result_segment = segment_handler.random_segment()
 	
-	var ball_initial_roation = $BallSprite.position.angle()
+	var ball_initial_rotation = $BallSprite.position.angle()
 	
 	target_rotation = Segment.get_roation_for_index(result_segment.index)
 	
@@ -43,26 +53,36 @@ func _start_spin(bs: Array[Bet]) -> void:
 
 
 func _stop_spin() -> void:
-	spinning = false
+	stop_rotation = rotation
 	game.event_bus.spin_complete.emit()
 	# pick a cell at random (taking any effects into account)
 	result_segment.apply_landed_effect(bets, ball)
+
+	state = WheelState.Returning
+	$ReturnTimer.start()
+	
+	$SpinTimer.timeout.connect(_stop_return)
 	
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _stop_return() -> void:
+	state = WheelState.Upright
 
+func get_normalised_time(timer: Timer) -> float:
+	return 1 - (timer.time_left / timer.wait_time)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if spinning:
-		var normalised_time = 1 - (spin_timer.time_left / spin_timer.wait_time)
-		var speed_at_time = spin_curve.sample(normalised_time) # rotations per second
-		var rotation_this_frame = 2 * PI * delta * speed_at_time # distance to move at this speed
-		self.rotate(rotation_this_frame)
-		
+	var state_timer: Timer = state_timers.get(state)
+	
+	var normalised_time = get_normalised_time(state_timer) if state_timer != null else 0
+	
+	if state == WheelState.Spinning:
+		var speed_at_time = spin_curve.sample(normalised_time)
+		self.rotate(2 * PI * delta * speed_at_time)
 		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		
-		$BallSprite.position = Vector2.UP.rotated(lerp_angle(ball_initial_roation, target_rotation, ball_curve.sample(normalised_time))) * 160
+		$BallSprite.position = Vector2.UP.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))) * 160
+	
+	if state == WheelState.Returning:
+		self.rotation = lerp_angle(stop_rotation, 0, return_curve.sample(normalised_time))
