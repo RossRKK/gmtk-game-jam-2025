@@ -1,5 +1,5 @@
+class_name RouletteWheel
 extends Node2D
-
 
 var game: Game = Game.get_instance()
 
@@ -15,7 +15,9 @@ var game: Game = Game.get_instance()
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
-@onready var ball_distance: float = $BallSprite.position.length()
+@onready var ball_distance: float = 160.0
+
+@onready var ball_queue: BallQueue = get_parent().get_node("BallQueue")
 
 enum WheelState {
 	Spinning,
@@ -29,13 +31,32 @@ enum WheelState {
 }
 
 var state: WheelState = WheelState.Upright
-var ball: RouletteBall = ColouredBall.new(Segment.RouletteColour.Red)
+var ball: RouletteBall
 var bets: Array[Bet]
 
 var result_segment: Segment
 var target_rotation: float = 0.
 var ball_initial_rotation: float = 0.
 var stop_rotation: float
+
+func _ready() -> void:
+	ball_queue.enqueue(ColouredBall.make_coloured_sprite(Segment.RouletteColour.Red))
+	ball_queue.enqueue(ColouredBall.make_coloured_sprite(Segment.RouletteColour.Black))
+	
+	for i in range(6):
+		ball_queue.enqueue(RouletteBall.make_basic_ball())
+	
+	receive_ball(ball_queue.dequeue())
+
+func next_ball():
+	remove_child(ball)
+	ball = ball_queue.cycle(ball)
+	receive_ball(ball)
+
+func receive_ball(b: RouletteBall) -> void:
+	ball = b
+	ball.position = Vector2.UP * ball_distance
+	add_child(ball)
 
 func _start_spin(bs: Array[Bet]) -> void:
 	bets = bs
@@ -52,18 +73,19 @@ func _start_spin(bs: Array[Bet]) -> void:
 	
 func _stop_spin() -> void:
 	stop_rotation = rotation
-	game.event_bus.spin_complete.emit()
 	# pick a cell at random (taking any effects into account)
 	result_segment.apply_landed_effect(bets, ball)
 
 	state = WheelState.Returning
 	$ReturnTimer.start()
 	
-	$SpinTimer.timeout.connect(_stop_return)
+	$ReturnTimer.timeout.connect(_stop_return)
 	
 
 func _stop_return() -> void:
 	state = WheelState.Upright
+	next_ball()
+	game.event_bus.spin_complete.emit()
 
 func get_normalised_time(timer: Timer) -> float:
 	return 1 - (timer.time_left / timer.wait_time)
@@ -80,7 +102,7 @@ func _process(delta: float) -> void:
 		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		
-		$BallSprite.position = Vector2.UP.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))) * ball_distance
+		ball.position = Vector2.UP.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))) * ball_distance
 	
 	if state == WheelState.Returning:
 		self.rotation = lerp_angle(stop_rotation, 0, return_curve.sample(normalised_time))

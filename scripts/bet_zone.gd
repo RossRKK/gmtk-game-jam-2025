@@ -58,14 +58,14 @@ func _process(delta: float) -> void:
 	pass
 
 func lock() -> void:
-	$Down.disabled = false
-	$Up.disabled = false
+	$Down.disabled = true
+	$Up.disabled = true
 	bet_text.editable = false
 
 func unlock() -> void:
-	$Down.disabled = true
-	$Up.disabled = true
-	bet_text.editable = true
+	$Down.disabled = false
+	$Up.disabled = false
+	bet_text.editable = false
 
 func set_button_state() -> void:
 	$Down.disabled = false

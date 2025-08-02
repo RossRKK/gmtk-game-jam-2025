@@ -7,7 +7,7 @@ enum RouletteColour {
 	Zero,
 }
 
-func get_colour_for_roulette_colour(seg_colour: RouletteColour, highlight: bool) -> Color:
+static func get_colour_for_roulette_colour(seg_colour: RouletteColour, highlight: bool) -> Color:
 	var highlight_boost = 0.2 if highlight else 0.
 	if seg_colour == RouletteColour.Red:
 		return Color(0.8 + highlight_boost, 0 + highlight_boost, 0 + highlight_boost)

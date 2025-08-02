@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhyms0lpvrve6"]
+[gd_scene load_steps=10 format=3 uid="uid://dhyms0lpvrve6"]
 
 [ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
 [ext_resource type="Script" uid="uid://ihpwiim42g6l" path="res://scripts/roulette_scene.gd" id="1_nh752"]
 [ext_resource type="PackedScene" uid="uid://r5abxcpmk0i7" path="res://scenes/roulette_wheel.tscn" id="2_bivp3"]
+[ext_resource type="Script" uid="uid://t3cibs3d1ubp" path="res://scripts/ball_queue.gd" id="2_fubdj"]
 [ext_resource type="PackedScene" path="res://scenes/post_processing_effects/pixel_effect.tscn" id="2_wwc13"]
 [ext_resource type="PackedScene" uid="uid://cciepqx17ef51" path="res://scenes/betting_board.tscn" id="3_iked3"]
 [ext_resource type="PackedScene" uid="uid://ygriw6svhfvb" path="res://scenes/slot_machine.tscn" id="4_wwc13"]
@@ -19,6 +20,12 @@ offset_right = 1144.0
 offset_bottom = 816.0
 mouse_filter = 1
 color = Color(0.295, 0.5, 0.322333, 1)
+
+[node name="BallQueue" type="Node2D" parent="."]
+position = Vector2(444, 49)
+script = ExtResource("2_fubdj")
+ball_distance = 40.0
+metadata/_custom_type_script = "uid://t3cibs3d1ubp"
 
 [node name="RouletteWheel" parent="." instance=ExtResource("2_bivp3")]
 position = Vector2(722, 287)
@@ -52,10 +59,10 @@ text = "$$$$"
 horizontal_alignment = 1
 
 [node name="Resulttext" type="RichTextLabel" parent="."]
-offset_left = 10.0
-offset_top = 486.0
-offset_right = 565.0
-offset_bottom = 542.0
+offset_left = 7.0
+offset_top = 488.0
+offset_right = 562.0
+offset_bottom = 544.0
 theme = ExtResource("5_4tu1h")
 horizontal_alignment = 1
 script = ExtResource("5_r8avv")

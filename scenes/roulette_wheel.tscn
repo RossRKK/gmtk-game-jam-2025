@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://r5abxcpmk0i7"]
+[gd_scene load_steps=9 format=3 uid="uid://r5abxcpmk0i7"]
 
 [ext_resource type="Script" uid="uid://crspto8xpllg5" path="res://scripts/roulette_wheel/roulette_wheel.gd" id="1_7td6c"]
 [ext_resource type="Curve" uid="uid://bg5v3hh2jl7ww" path="res://resources/roulette_wheel_speed_curve.tres" id="2_tesrp"]
 [ext_resource type="Texture2D" uid="uid://dxt7fbm7mxhks" path="res://assets/png/wheel.png" id="2_yknb5"]
 [ext_resource type="Script" uid="uid://bpkca7p7wyc10" path="res://scripts/roulette_wheel/segment_handler.gd" id="3_yknb5"]
 [ext_resource type="AudioStream" uid="uid://cv45d7prip4ss" path="res://assets/sound/roulette.mp3" id="4_cjovd"]
-[ext_resource type="Texture2D" uid="uid://do22dud8xpk4i" path="res://assets/png/ball_base.png" id="5_61irv"]
 
 [sub_resource type="Curve" id="Curve_tesrp"]
 _data = [Vector2(0, 0), -0.0104387, -0.0104387, 0, 0, Vector2(0.886243, 1), 0.761001, 0.761001, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -31,6 +30,7 @@ script = ExtResource("1_7td6c")
 spin_curve = ExtResource("2_tesrp")
 ball_curve = SubResource("Curve_tesrp")
 return_curve = SubResource("Curve_j6a7s")
+metadata/_custom_type_script = "uid://ihpwiim42g6l"
 
 [node name="SegmentHandler" type="Node2D" parent="."]
 script = ExtResource("3_yknb5")
@@ -49,8 +49,3 @@ stream = ExtResource("4_cjovd")
 [node name="ReturnTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-
-[node name="BallSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -160)
-scale = Vector2(0.492188, 0.492188)
-texture = ExtResource("5_61irv")
