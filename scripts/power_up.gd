@@ -38,7 +38,11 @@ func price() -> float:
 	return base_price * (game.level() ** 2)
 
 func _on_pressed() -> void:
-	# TODO tell the slot machine to remove us
-	# TODO charge the player the price
-	disabled = true # disbale the button to prevent a double activate
+	# just cheat and remove our texture and disable
+	texture_normal = null
+	texture_hover = null
+	mouse_default_cursor_shape = Control.CURSOR_ARROW
+	disabled = true # disable the button to prevent a double activate
+	
+	game.player_inventory.update_money(-price())
 	activate()

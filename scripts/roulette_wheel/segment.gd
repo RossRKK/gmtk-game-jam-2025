@@ -42,8 +42,9 @@ var is_highlighted := false:
 @export var segment_effect: SegmentEffect
 
 var sprite: Sprite2D
-
 var number_text: RichTextLabel
+var scene: Area2D
+var collider: CollisionPolygon2D
 
 var index: int
 
@@ -66,16 +67,34 @@ func get_label() -> String:
 func mouse_entered() -> void:
 	is_highlighted = true
 
-
 	
 func mouse_exited() -> void:
 	is_highlighted = false
-	
-	
+
+#func is_point_in_area(point: Vector2, area: Area2D) -> bool:
+	#var space_state = get_world_2d().direct_space_state
+	#var query = PhysicsPointQueryParameters2D.new()
+	#query.position = point
+	#query.collision_mask = area.collision_layer
+	#query.collide_with_areas = true
+	#query.collide_with_bodies = false
+	#
+	#var result = space_state.intersect_point(query)
+	#
+	## Check if any of the results match our area
+	#for collision in result:
+		#if collision.collider == area:
+			#return true
+	#return false
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if ((not event.pressed) and is_highlighted):
+			game.event_bus.segment_clicked.emit(self)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var scene = load("res://scenes/segment.tscn").instantiate()
+	scene = load("res://scenes/segment.tscn").instantiate()
 	add_child(scene)
 	
 	scene.input_pickable = true
@@ -85,6 +104,7 @@ func _ready() -> void:
 		
 	sprite = scene.get_node("SegmentSprite")
 	number_text = scene.get_node("SegmentLabel")
+	collider = scene.get_node("CollisionPolygon")
 	
 	sprite.modulate = get_colour_for_roulette_colour(colour, is_highlighted)
 	number_text.text = get_label()

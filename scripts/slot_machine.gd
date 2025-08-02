@@ -1,11 +1,19 @@
 extends Control
 
+var game: Game = Game.get_instance()
+
+@export var spin_base_cost: float = 100.
+
 var spinning: bool = false
+
+func get_spin_cost() -> float:
+	return spin_base_cost * game.level() ** 2
 
 func _ready() -> void:
 	start_spin()
 
 func enter_coin():
+	game.player_inventory.update_money(-get_spin_cost())
 	$CoinSound.finished.connect(start_spin)
 	$CoinSound.play()
 
