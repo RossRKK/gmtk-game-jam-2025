@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://b7v1503uwjkpd" path="res://slot_machine_column.gd" id="1_xjw1r"]
 [ext_resource type="Theme" uid="uid://croornac4nhwc" path="res://scenes/slot_machine_text.tres" id="4_2e0ow"]
 [ext_resource type="AudioStream" uid="uid://dv581e1x1ypvh" path="res://assets/sound/slot_machine_spin.mp3" id="5_2e0ow"]
-[ext_resource type="Texture2D" uid="uid://2wu1ffypqjxh" path="res://assets/png/solt_handle_0001.png" id="5_7v1fh"]
-[ext_resource type="Texture2D" uid="uid://bh22rqo7m3hes" path="res://assets/png/solt_handle_0002.png" id="6_pputl"]
+[ext_resource type="Texture2D" uid="uid://sku5t3ymlyvh" path="res://assets/png/solt_handle_0001.png" id="5_7v1fh"]
+[ext_resource type="Texture2D" uid="uid://drbknfo5vm0ng" path="res://assets/png/solt_handle_0002.png" id="6_pputl"]
 [ext_resource type="AudioStream" uid="uid://kds640huoo3n" path="res://assets/sound/slot_machin_coin.wav" id="6_puwce"]
 
 [node name="SlotMachine" type="Control"]
