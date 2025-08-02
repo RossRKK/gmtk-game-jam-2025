@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhyms0lpvrve6"]
+[gd_scene load_steps=12 format=3 uid="uid://dhyms0lpvrve6"]
 
 [ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
 [ext_resource type="Script" uid="uid://ihpwiim42g6l" path="res://scripts/roulette_scene.gd" id="1_nh752"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ygriw6svhfvb" path="res://scenes/slot_machine.tscn" id="4_wwc13"]
 [ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="5_4tu1h"]
 [ext_resource type="Script" uid="uid://bd6fh0c2rceq5" path="res://scripts/result_text.gd" id="5_r8avv"]
+[ext_resource type="Script" uid="uid://x11m5fkbtgsf" path="res://scripts/tool_tip.gd" id="10_bfvbi"]
+[ext_resource type="Theme" uid="uid://croornac4nhwc" path="res://scenes/slot_machine_text.tres" id="10_oygq2"]
 
 [node name="RouletteScene" type="Node2D"]
 script = ExtResource("1_nh752")
@@ -75,5 +77,26 @@ visible = false
 
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
 visible = false
+
+[node name="ToolTip" type="Node2D" parent="."]
+visible = false
+position = Vector2(-321, 18)
+script = ExtResource("10_bfvbi")
+metadata/_custom_type_script = "uid://x11m5fkbtgsf"
+
+[node name="BackDrop" type="ColorRect" parent="ToolTip"]
+offset_right = 205.0
+offset_bottom = 99.0
+color = Color(0, 0, 0, 0.701961)
+
+[node name="TooltipText" type="RichTextLabel" parent="ToolTip"]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 201.0
+offset_bottom = 93.0
+theme = ExtResource("10_oygq2")
+text = "This is the tooltip"
+fit_content = true
+scroll_active = false
 
 [connection signal="submit_bet" from="BettingBoard" to="RouletteWheel" method="_start_spin"]

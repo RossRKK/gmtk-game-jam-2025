@@ -63,13 +63,19 @@ func get_label() -> String:
 		return "00"
 		
 	return "%d" % number
+	
+	
+var tool_tip_id: int = -1
 
 func mouse_entered() -> void:
 	is_highlighted = true
+	tool_tip_id = game.tool_tip.show_tool_tip("%s %d\n%s\n%s" % [RouletteColour.find_key(colour), number, segment_effect.effect_description, segment_effect.effect_description])
 
 	
 func mouse_exited() -> void:
 	is_highlighted = false
+	if tool_tip_id != -1:
+		game.tool_tip.hide_tool_tip(tool_tip_id)
 
 #func is_point_in_area(point: Vector2, area: Area2D) -> bool:
 	#var space_state = get_world_2d().direct_space_state
@@ -118,9 +124,7 @@ func format_name() -> String:
 	return "%s %d" % [RouletteColour.keys()[colour], number]
 
 
-func apply_landed_effect(bets: Array[Bet], ball: RouletteBall):
-	print("%s %d" % ["Red" if colour else "Black", number])
-	
+func apply_landed_effect(bets: Array[Bet], ball: RouletteBall):	
 	var total_winnings := 0
 	for bet in bets:
 		bet.debug_print()

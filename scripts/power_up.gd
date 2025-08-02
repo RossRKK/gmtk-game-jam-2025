@@ -46,7 +46,6 @@ static func random_power_up() -> PowerUp:
 	return power_up
 
 
-
 func _init() -> void:
 	game = Game.get_instance()
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
