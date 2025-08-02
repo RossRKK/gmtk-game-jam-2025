@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ygriw6svhfvb"]
+[gd_scene load_steps=8 format=3 uid="uid://ygriw6svhfvb"]
 
+[ext_resource type="Script" uid="uid://digfswsi7ohvf" path="res://scripts/slot_machine.gd" id="1_7scc5"]
 [ext_resource type="Texture2D" uid="uid://qc4paeh73wm5" path="res://assets/png/slot.png" id="1_xixe3"]
 [ext_resource type="Script" uid="uid://b7v1503uwjkpd" path="res://slot_machine_column.gd" id="1_xjw1r"]
+[ext_resource type="Theme" uid="uid://croornac4nhwc" path="res://scenes/slot_machine_text.tres" id="4_2e0ow"]
+[ext_resource type="AudioStream" uid="uid://dv581e1x1ypvh" path="res://assets/sound/slot_machine_spin.mp3" id="5_2e0ow"]
+[ext_resource type="AudioStream" uid="uid://kds640huoo3n" path="res://assets/sound/slot_machin_coin.wav" id="6_puwce"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xixe3"]
 size = Vector2(30, 116)
@@ -10,66 +14,97 @@ size = Vector2(30, 116)
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
+script = ExtResource("1_7scc5")
 
 [node name="Backdrop" type="ColorRect" parent="."]
-layout_mode = 2
+show_behind_parent = true
+clip_children = 2
 offset_left = -58.0
 offset_top = -53.0
 offset_right = 60.0
 offset_bottom = 58.0
 
-[node name="LeftSlotMachineColumn" type="Control" parent="."]
+[node name="LeftSlotMachineColumn" type="Control" parent="Backdrop"]
 physics_interpolation_mode = 0
-layout_mode = 2
+layout_mode = 3
 anchors_preset = 0
-offset_left = -49.0
-offset_top = -8.0
-offset_right = -49.0
-offset_bottom = -8.0
+offset_left = 9.0
+offset_top = 45.0
+offset_right = 9.0
+offset_bottom = 45.0
 mouse_filter = 1
 script = ExtResource("1_xjw1r")
 metadata/_custom_type_script = "uid://b7v1503uwjkpd"
 
-[node name="MiddleSlotMachineColumn" type="Control" parent="."]
+[node name="MiddleSlotMachineColumn" type="Control" parent="Backdrop"]
 physics_interpolation_mode = 0
-layout_mode = 2
+layout_mode = 3
 anchors_preset = 0
-offset_left = -13.0
-offset_top = -8.0
-offset_right = -13.0
-offset_bottom = -8.0
+offset_left = 45.0
+offset_top = 45.0
+offset_right = 45.0
+offset_bottom = 45.0
 mouse_filter = 1
 script = ExtResource("1_xjw1r")
 metadata/_custom_type_script = "uid://b7v1503uwjkpd"
 
-[node name="RightSlotMachineColumn" type="Control" parent="."]
+[node name="RightSlotMachineColumn" type="Control" parent="Backdrop"]
 physics_interpolation_mode = 0
-layout_mode = 2
+layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = -8.0
-offset_right = 23.0
-offset_bottom = -8.0
+offset_left = 81.0
+offset_top = 45.0
+offset_right = 81.0
+offset_bottom = 45.0
 mouse_filter = 1
 script = ExtResource("1_xjw1r")
 metadata/_custom_type_script = "uid://b7v1503uwjkpd"
 
-[node name="TopShade" type="ColorRect" parent="."]
-offset_left = -59.0
-offset_top = -53.0
-offset_right = 60.0
-offset_bottom = -13.0
+[node name="TopShade" type="ColorRect" parent="Backdrop"]
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 118.0
+offset_bottom = 41.0
 color = Color(0, 0, 0, 0.196078)
 
-[node name="BottomShade" type="ColorRect" parent="."]
-offset_left = -59.0
-offset_top = 24.0
-offset_right = 60.0
-offset_bottom = 58.0
-color = Color(0, 0, 0, 0.196078)
+[node name="BottomShade" type="ColorRect" parent="Backdrop"]
+offset_top = 76.0
+offset_right = 119.0
+offset_bottom = 110.0
+color = Color(0, 0, 0, 0.313726)
 
 [node name="SlotMachineSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_xixe3")
+
+[node name="LeftLabel" type="RichTextLabel" parent="."]
+offset_left = -59.0
+offset_top = 24.0
+offset_right = -19.0
+offset_bottom = 42.0
+theme = ExtResource("4_2e0ow")
+text = "$$$$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MiddleLabel" type="RichTextLabel" parent="."]
+offset_left = -20.0
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 42.0
+theme = ExtResource("4_2e0ow")
+text = "$$$$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightLabel" type="RichTextLabel" parent="."]
+offset_left = 19.0
+offset_top = 24.0
+offset_right = 59.0
+offset_bottom = 42.0
+theme = ExtResource("4_2e0ow")
+text = "$$$$"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Arm" type="TextureButton" parent="."]
 layout_mode = 2
@@ -79,3 +114,18 @@ offset_right = 95.0
 offset_bottom = 68.0
 mouse_default_cursor_shape = 2
 texture_normal = SubResource("PlaceholderTexture2D_xixe3")
+
+[node name="SpinTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2e0ow")
+
+[node name="CoinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_puwce")
+
+[connection signal="power_ups_have_changed" from="Backdrop/LeftSlotMachineColumn" to="." method="update_labels"]
+[connection signal="power_ups_have_changed" from="Backdrop/MiddleSlotMachineColumn" to="." method="update_labels"]
+[connection signal="power_ups_have_changed" from="Backdrop/RightSlotMachineColumn" to="." method="update_labels"]
+[connection signal="pressed" from="Arm" to="." method="enter_coin"]
