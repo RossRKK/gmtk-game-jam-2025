@@ -15,7 +15,7 @@ var game: Game = Game.get_instance()
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
-var ball_distance: float = 160.0
+var ball_distance: float = 164.0
 
 @onready var ball_queue: BallQueue = get_parent().get_node("BallQueue")
 
@@ -39,7 +39,9 @@ var target_rotation: float = 0.
 var ball_initial_rotation: float = 0.
 var stop_rotation: float
 
-var ball_offset = Vector2.UP * ball_distance + Vector2.LEFT * 16
+var ball_offset_out = Vector2.UP * ball_distance
+var ball_offset_orthogonal = Vector2.LEFT * 17
+
 
 func _ready() -> void:
 	ball_queue.enqueue(GolfBall.make_golf_ball())
@@ -60,7 +62,7 @@ func next_ball():
 
 func receive_ball(b: RouletteBall) -> void:
 	ball = b
-	ball.position = ball_offset
+	ball.position = ball_offset_out + ball_offset_orthogonal
 	add_child(ball)
 
 func _start_spin(bs: Array[Bet]) -> void:
@@ -109,7 +111,8 @@ func _process(delta: float) -> void:
 		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		
-		ball.position = ball_offset.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time)))
+		var angle = lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))
+		ball.position = ball_offset_out.rotated(angle) + ball_offset_orthogonal.rotated(angle)
 	
 	if state == WheelState.Returning:
 		self.rotation = lerp_angle(stop_rotation, 0, return_curve.sample(normalised_time))
