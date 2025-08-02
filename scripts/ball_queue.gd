@@ -8,7 +8,7 @@ func update_ball_positions() -> void:
 		var ball = get_child(i) as RouletteBall
 		if ball:
 			ball.position.x = 0.
-			ball.position.y = i * ball_distance
+			ball.position.y = -i * ball_distance
 
 func enqueue(ball: RouletteBall) -> void:
 	add_child(ball)
