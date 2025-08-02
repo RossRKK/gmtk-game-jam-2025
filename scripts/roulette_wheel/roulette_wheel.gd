@@ -44,7 +44,6 @@ var ball_offset_orthogonal = Vector2.LEFT * 17
 
 
 func _ready() -> void:
-	ball_queue.enqueue(GolfBall.make_golf_ball())
 	
 	for i in range(8):
 		match i % 3:
@@ -61,6 +60,7 @@ func next_ball():
 	receive_ball(ball)
 
 func receive_ball(b: RouletteBall) -> void:
+	remove_child(ball)
 	ball = b
 	ball.position = ball_offset_out + ball_offset_orthogonal
 	add_child(ball)

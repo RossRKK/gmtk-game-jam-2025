@@ -20,7 +20,8 @@ static func random_power_up() -> PowerUp:
 	var balls: Array = [
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Red),
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Black),
-		GolfBall.make_golf_ball
+		GolfBall.make_golf_ball,
+		EightBall.make_eight_ball,
 	]
 	var power_ups: Array = [
 		PowerUpMakeColour.new_black,
@@ -46,7 +47,8 @@ static func random_power_up() -> PowerUp:
 		# these are added after the hard coded ones
 		12 * BASIC_WEIGHT, # red ball
 		12 * BASIC_WEIGHT, # black ball
-		1000, # golf ball
+		6, # golf ball
+		12, # eight ball
 	]
 	
 	for ball_factory in balls:
