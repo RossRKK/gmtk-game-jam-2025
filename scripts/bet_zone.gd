@@ -56,26 +56,35 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+static func toggle_button(button: Button, enabled: bool):
+	if enabled:
+		button.disabled = false
+		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	else:
+		button.disabled = true
+		button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func lock() -> void:
-	$Down.disabled = true
-	$Up.disabled = true
+	toggle_button($Down, false)
+	toggle_button($Up, false)
 	bet_text.editable = false
+	
 
 func unlock() -> void:
-	$Down.disabled = false
-	$Up.disabled = false
+	toggle_button($Down, true)
+	toggle_button($Up, true)
 	bet_text.editable = false
 
 func set_button_state() -> void:
-	$Down.disabled = false
-	$Up.disabled = false
+	toggle_button($Down, true)
+	toggle_button($Up, true)
 
 	if bet_increment > remaining_funds:
-		$Up.disabled = true
+		toggle_button($Up, false)
 		
 	if (bet.bet_amount - bet_increment) < 0:
-		$Down.disabled = true
+		toggle_button($Down, false)
 		
 	
 func increase_bet() -> void:

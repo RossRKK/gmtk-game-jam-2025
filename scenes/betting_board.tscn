@@ -12,6 +12,7 @@ offset_left = 758.0
 offset_top = 173.0
 offset_right = 879.0
 offset_bottom = 287.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_fkfce")
 text = "Spin!"
 

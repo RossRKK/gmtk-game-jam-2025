@@ -11,11 +11,21 @@ func set_positions():
 		power_up.position.x = 0.
 		
 
+func disable_enable_powerups():
+	for i in range(COLUMN_HEIGHT):
+		var power_up: PowerUp = get_child(i)
+		var enabled = i == 1
+		power_up.disabled = !enabled
+		power_up.mouse_default_cursor_shape = CURSOR_POINTING_HAND if enabled else CURSOR_ARROW
+
+func set_power_up_ui_states():
+	set_positions()
+	disable_enable_powerups()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(COLUMN_HEIGHT):
 		var power_up = PowerUp.random_power_up()
-		#power_up.disabled = true
 		add_child(power_up)
 	
-	set_positions()
+	set_power_up_ui_states()
