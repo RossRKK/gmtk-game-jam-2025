@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 var game: Game = Game.get_instance()
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func enter_coin():
 	$Arm.disabled = true
-	$Arm.mouse_default_cursor_shape = CURSOR_ARROW
+	$Arm.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	game.player_inventory.update_money(-get_spin_cost())
 	$CoinSound.finished.connect(start_spin)
 	$CoinSound.play()
@@ -27,7 +27,7 @@ func start_spin():
 	
 func stop_spin():
 	$Arm.disabled = false
-	$Arm.mouse_default_cursor_shape = CURSOR_POINTING_HAND
+	$Arm.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	$Arm.button_pressed = false
 	$SpinSound.stop()
 	spinning = false

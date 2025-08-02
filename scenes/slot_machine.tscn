@@ -9,10 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://drbknfo5vm0ng" path="res://assets/png/solt_handle_0002.png" id="6_pputl"]
 [ext_resource type="AudioStream" uid="uid://kds640huoo3n" path="res://assets/sound/slot_machin_coin.wav" id="6_puwce"]
 
-[node name="SlotMachine" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 1
+[node name="SlotMachine" type="Node2D"]
 script = ExtResource("1_7scc5")
 
 [node name="Backdrop" type="ColorRect" parent="."]
@@ -106,7 +103,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Arm" type="TextureButton" parent="."]
-layout_mode = 2
 offset_left = 62.0
 offset_top = -33.0
 offset_right = 85.0
