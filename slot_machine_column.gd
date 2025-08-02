@@ -37,6 +37,7 @@ func randomise() -> void:
 		add_child(power_up)
 	
 	set_power_up_ui_states()
+	power_ups_have_changed.emit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

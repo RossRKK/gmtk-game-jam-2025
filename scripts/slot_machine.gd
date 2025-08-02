@@ -21,12 +21,12 @@ func stop_spin():
 	update_labels()
 	
 func update_labels() -> void:
-	if $Backdrop/LeftLabel and $Backdrop/LeftSlotMachineColumn:
-		$Backdrop/LeftLabel.text = "$%d" % $Backdrop/LeftSlotMachineColumn.get_active_power_up().price()
-	if $Backdrop/MiddleLabel and $Backdrop/MiddleSlotMachineColumn:
-		$Backdrop/MiddleLabel.text = "$%d" % $Backdrop/MiddleSlotMachineColumn.get_active_power_up().price()
-	if $Backdrop/RightLabel and $Backdrop/RightSlotMachineColumn:
-		$Backdrop/RightLabel.text = "$%d" % $Backdrop/RightSlotMachineColumn.get_active_power_up().price()
+	if $LeftLabel and $Backdrop/LeftSlotMachineColumn and $Backdrop/LeftSlotMachineColumn.get_active_power_up():
+		$LeftLabel.text = "$%d" % $Backdrop/LeftSlotMachineColumn.get_active_power_up().price()
+	if $MiddleLabel and $Backdrop/MiddleSlotMachineColumn and $Backdrop/MiddleSlotMachineColumn.get_active_power_up():
+		$MiddleLabel.text = "$%d" % $Backdrop/MiddleSlotMachineColumn.get_active_power_up().price()
+	if $RightLabel and $Backdrop/RightSlotMachineColumn and $Backdrop/RightSlotMachineColumn.get_active_power_up():
+		$RightLabel.text = "$%d" % $Backdrop/RightSlotMachineColumn.get_active_power_up().price()
 
 
 func _process(delta: float) -> void:
