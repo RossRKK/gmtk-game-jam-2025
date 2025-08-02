@@ -1,14 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://ygriw6svhfvb"]
+[gd_scene load_steps=9 format=3 uid="uid://ygriw6svhfvb"]
 
 [ext_resource type="Script" uid="uid://digfswsi7ohvf" path="res://scripts/slot_machine.gd" id="1_7scc5"]
 [ext_resource type="Texture2D" uid="uid://qc4paeh73wm5" path="res://assets/png/slot.png" id="1_xixe3"]
 [ext_resource type="Script" uid="uid://b7v1503uwjkpd" path="res://slot_machine_column.gd" id="1_xjw1r"]
 [ext_resource type="Theme" uid="uid://croornac4nhwc" path="res://scenes/slot_machine_text.tres" id="4_2e0ow"]
 [ext_resource type="AudioStream" uid="uid://dv581e1x1ypvh" path="res://assets/sound/slot_machine_spin.mp3" id="5_2e0ow"]
+[ext_resource type="Texture2D" uid="uid://2wu1ffypqjxh" path="res://assets/png/solt_handle_0001.png" id="5_7v1fh"]
+[ext_resource type="Texture2D" uid="uid://bh22rqo7m3hes" path="res://assets/png/solt_handle_0002.png" id="6_pputl"]
 [ext_resource type="AudioStream" uid="uid://kds640huoo3n" path="res://assets/sound/slot_machin_coin.wav" id="6_puwce"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xixe3"]
-size = Vector2(30, 116)
 
 [node name="SlotMachine" type="Control"]
 layout_mode = 3
@@ -108,12 +107,18 @@ vertical_alignment = 1
 
 [node name="Arm" type="TextureButton" parent="."]
 layout_mode = 2
-offset_left = 64.0
-offset_top = -52.0
-offset_right = 95.0
-offset_bottom = 68.0
+offset_left = 43.0
+offset_top = -32.0
+offset_right = 107.0
+offset_bottom = 32.0
 mouse_default_cursor_shape = 2
-texture_normal = SubResource("PlaceholderTexture2D_xixe3")
+disabled = true
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+texture_normal = ExtResource("5_7v1fh")
+texture_pressed = ExtResource("6_pputl")
+texture_hover = ExtResource("6_pputl")
 
 [node name="SpinTimer" type="Timer" parent="."]
 wait_time = 3.0

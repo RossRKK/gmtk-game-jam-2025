@@ -19,11 +19,9 @@ func _init(c: Segment.RouletteColour) -> void:
 
 
 func segment_clicked(segment: Segment) -> void:
-	print("Hi")
 	segment.colour = colour
 	game.event_bus.segment_clicked.disconnect(segment_clicked)
 
 func activate() -> void:
-	print("Hello")
 	super.activate()
 	game.event_bus.segment_clicked.connect(segment_clicked)
