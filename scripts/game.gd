@@ -13,6 +13,8 @@ var NUM_SPINS_PER_LEVEL := 8
 
 var num_spins := 0
 
+var last_used_power_up: PowerUp
+
 func _init() -> void:
 	event_bus.spin_start.connect(spin_started)
 
@@ -24,6 +26,7 @@ func level() -> int:
 
 func minimum_bet() -> float:
 	return base_minimum_bet * (level() ** 2)
+	
 
 static var instance: Game = Game.new()
 
