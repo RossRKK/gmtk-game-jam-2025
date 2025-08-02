@@ -1,8 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://ygriw6svhfvb"]
+[gd_scene load_steps=4 format=3 uid="uid://ygriw6svhfvb"]
 
 [ext_resource type="Texture2D" uid="uid://qc4paeh73wm5" path="res://assets/png/slot.png" id="1_xixe3"]
+[ext_resource type="Script" uid="uid://b7v1503uwjkpd" path="res://slot_machine_column.gd" id="1_xjw1r"]
 
-[node name="SlotMachine" type="Node2D"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xixe3"]
+size = Vector2(30, 116)
+
+[node name="SlotMachine" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = -58.0
+offset_top = -53.0
+offset_right = 60.0
+offset_bottom = 58.0
 
 [node name="SlotMachineSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_xixe3")
+
+[node name="LeftSlotMachineColumn" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+anchors_preset = 0
+offset_left = -49.0
+offset_top = -8.0
+offset_right = -49.0
+offset_bottom = -8.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+script = ExtResource("1_xjw1r")
+metadata/_custom_type_script = "uid://b7v1503uwjkpd"
+
+[node name="MiddleSlotMachineColumn" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+anchors_preset = 0
+offset_left = -13.0
+offset_top = -8.0
+offset_right = -13.0
+offset_bottom = -8.0
+mouse_filter = 1
+script = ExtResource("1_xjw1r")
+metadata/_custom_type_script = "uid://b7v1503uwjkpd"
+
+[node name="RightSlotMachineColumn" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+anchors_preset = 0
+offset_left = 23.0
+offset_top = -8.0
+offset_right = 23.0
+offset_bottom = -8.0
+mouse_filter = 1
+script = ExtResource("1_xjw1r")
+metadata/_custom_type_script = "uid://b7v1503uwjkpd"
+
+[node name="Arm" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 64.0
+offset_top = -52.0
+offset_right = 95.0
+offset_bottom = 68.0
+mouse_default_cursor_shape = 2
+texture_normal = SubResource("PlaceholderTexture2D_xixe3")

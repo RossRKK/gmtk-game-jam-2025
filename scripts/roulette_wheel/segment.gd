@@ -7,6 +7,7 @@ enum RouletteColour {
 	Zero,
 }
 
+
 static func get_colour_for_roulette_colour(seg_colour: RouletteColour, highlight: bool) -> Color:
 	var highlight_boost = 0.2 if highlight else 0.
 	if seg_colour == RouletteColour.Red:
@@ -64,23 +65,34 @@ func get_label() -> String:
 
 func mouse_entered() -> void:
 	is_highlighted = true
+
+
 	
 func mouse_exited() -> void:
 	is_highlighted = false
+	
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var scene = load("res://scenes/segment.tscn").instantiate()
 	add_child(scene)
 	
+	scene.input_pickable = true
+
 	scene.mouse_entered.connect(mouse_entered)
 	scene.mouse_exited.connect(mouse_exited)
-	
+		
 	sprite = scene.get_node("SegmentSprite")
 	number_text = scene.get_node("SegmentLabel")
 	
 	sprite.modulate = get_colour_for_roulette_colour(colour, is_highlighted)
 	number_text.text = get_label()
+
+func _process(delta: float) -> void:
+	if is_highlighted:
+		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_POINTING_HAND)
+
 
 func format_name() -> String:
 	return "%s %d" % [RouletteColour.keys()[colour], number]

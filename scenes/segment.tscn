@@ -3,8 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://di5hd8wapd7et" path="res://assets/png/segment.png" id="1_ekkcu"]
 [ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="2_nac3j"]
 
-[node name="SegmentScene" type="StaticBody2D"]
-input_pickable = true
+[node name="SegmentScene" type="Area2D"]
 
 [node name="SegmentSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)

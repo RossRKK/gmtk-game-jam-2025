@@ -37,7 +37,10 @@ position = Vector2(263, 523)
 scale = Vector2(0.8, 0.8)
 
 [node name="SlotMachine" parent="." instance=ExtResource("4_wwc13")]
-position = Vector2(164, 150)
+offset_left = 164.0
+offset_top = 150.0
+offset_right = 164.0
+offset_bottom = 150.0
 scale = Vector2(2, 2)
 
 [node name="MoneyLabel" type="RichTextLabel" parent="."]
