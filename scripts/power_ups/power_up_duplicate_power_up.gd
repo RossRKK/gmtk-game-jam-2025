@@ -20,3 +20,6 @@ func activate() -> void:
 		game.player_inventory.update_money(price())
 	else:
 		game.last_used_power_up.activate()
+
+func description() -> String:
+	return "Duplicate the last power up you used"

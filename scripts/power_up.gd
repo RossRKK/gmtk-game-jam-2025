@@ -52,6 +52,18 @@ func _init() -> void:
 	
 func _ready() -> void:
 	pressed.connect(_on_pressed)
+	mouse_entered.connect(_mouse_entered)
+	mouse_exited.connect(_mouse_exited)
+
+var tool_tip_id = -1
+
+func _mouse_entered() -> void:
+	tool_tip_id = game.tool_tip.show_tool_tip(description())
+
+func _mouse_exited() -> void:
+	if tool_tip_id != -1:
+		game.tool_tip.hide_tool_tip(tool_tip_id)
+		tool_tip_id = -1
 
 # the user has clicked this power up and is activating it
 func activate() -> void:
@@ -71,3 +83,7 @@ func _on_pressed() -> void:
 	game.player_inventory.update_money(-price())
 	activate()
 	game.last_used_power_up = self
+
+
+func description():
+	return "This power up doesn't have a description, very mysterious"

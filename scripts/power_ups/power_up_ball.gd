@@ -22,3 +22,7 @@ func _init(b: RouletteBall) -> void:
 func activate() -> void:
 	super.activate()
 	Game.get_instance().roulette_wheel.receive_ball(ball)
+
+
+func description():
+	return ball.description()

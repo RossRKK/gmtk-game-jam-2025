@@ -30,3 +30,6 @@ func activate() -> void:
 	super.activate()
 	game.event_bus.segment_clicked.connect(segment_clicked)
 	game.event_bus.help_text.emit("Click a segment to copy it")
+
+func description() -> String:
+	return "Duplicate a wheel segment"

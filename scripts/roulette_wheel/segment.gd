@@ -76,6 +76,7 @@ func mouse_exited() -> void:
 	is_highlighted = false
 	if tool_tip_id != -1:
 		game.tool_tip.hide_tool_tip(tool_tip_id)
+		tool_tip_id = -1
 
 #func is_point_in_area(point: Vector2, area: Area2D) -> bool:
 	#var space_state = get_world_2d().direct_space_state
