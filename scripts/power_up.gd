@@ -5,17 +5,29 @@ var game: Game = Game.get_instance()
 
 static var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
+const BASIC_WEIGHT = 1
+const SEGEMENT_DUPLICATE_WEIGHT = 6
+
 @export var base_price: float = 100
 
 static func random_power_up() -> PowerUp:
 	var power_ups: Array = [
 		PowerUpMakeColour.new_black,
 		PowerUpMakeColour.new_red,
+		PowerUpDuplicateSegment.make,
 	]
-	var power_up: PowerUp = power_ups[random.randi_range(0, power_ups.size()-1)].call()
+	var weights: Array[int] = [
+		12 * BASIC_WEIGHT, 
+		12 * BASIC_WEIGHT, 
+		SEGEMENT_DUPLICATE_WEIGHT
+	]
 	
-	power_up.scale.x = 0.2
-	power_up.scale.y = 0.2
+	for i in range(Game.get_instance().WHEEL_SIZE):
+		weights.append(BASIC_WEIGHT)
+		power_ups.append(PowerUpMakeNumber.make_with_number.bind(i))
+		
+	var power_up: PowerUp = power_ups[random.rand_weighted(weights)].call()
+
 	
 	return power_up
 
