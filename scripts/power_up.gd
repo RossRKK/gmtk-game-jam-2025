@@ -16,6 +16,7 @@ const MAGNET_WEIGHT = 6
 static func random_power_up() -> PowerUp:
 	var magnet_curve = preload("res://resources/segment_effects/magnet_segment_curve.tres")
 	var repolsor_curve = preload("res://resources/segment_effects/repulsor_segment_curve.tres")
+	var banana_curve = preload("res://resources/segment_effects/banana_segment_curve.tres")
 	var balls: Array = [
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Red),
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Black),
@@ -28,6 +29,8 @@ static func random_power_up() -> PowerUp:
 		PowerUpDuplicatePowerUp.make,
 		PowerUpMagnet.make.bind(magnet_curve, 500.,"Magnetised", "The ball is more likely to land near here", "Make your own luck. Make the ball more likely to land in a segment or it's neighbours"),
 		PowerUpMagnet.make.bind(repolsor_curve, 500.,"Repellent", "The ball is less likely to land near here", "Make your own luck. Make the ball less likely to land in a segment or it's neighbours"),
+		PowerUpMagnet.make.bind(banana_curve, 500.,"Slippery", "The ball will slip passed here into the next segment", "Slick up a segment so that the ball lands in the next space"),
+
 	]
 	var weights: Array[int] = [
 		12 * BASIC_WEIGHT, # make red
@@ -37,6 +40,7 @@ static func random_power_up() -> PowerUp:
 		POWER_UP_DUPLICATE_WEIGHT,
 		MAGNET_WEIGHT, # magnet
 		MAGNET_WEIGHT, # replusor
+		MAGNET_WEIGHT, # banana
 		
 		# these are added after the hard coded ones
 		12 * BASIC_WEIGHT, # red ball

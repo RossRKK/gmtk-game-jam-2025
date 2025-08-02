@@ -5,6 +5,8 @@ static func make(curve: Curve, base_price: float, title: String, description: St
 	var power_up = PowerUpMagnet.new(curve, base_price, title, description, tool_tip)
 	if title == "Magnetised":
 		power_up.texture_normal = preload("res://assets/png/power_horseshoe_upright.png")
+	elif title == "Slippery":
+		power_up.texture_normal = preload("res://assets/png/power_banana.png")
 	else:
 		power_up.texture_normal = preload("res://assets/png/power_horseshoe.png")
 	power_up.scale.x = 0.4

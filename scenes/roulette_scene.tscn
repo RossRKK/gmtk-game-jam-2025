@@ -99,4 +99,14 @@ visible = false
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
 visible = false
 
+[node name="Label" type="RichTextLabel" parent="."]
+offset_left = -58.0
+offset_top = 19.0
+offset_right = -18.0
+offset_bottom = 37.0
+theme = ExtResource("5_4tu1h")
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="submit_bet" from="BettingBoard" to="RouletteWheel" method="_start_spin"]
