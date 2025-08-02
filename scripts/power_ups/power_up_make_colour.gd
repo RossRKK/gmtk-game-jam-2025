@@ -15,6 +15,13 @@ static func new_red() -> PowerUpMakeColour:
 	power_up.scale.y = 0.2
 	return power_up
 	
+static func new_zero() -> PowerUpMakeColour:
+	var power_up = PowerUpMakeColour.new(Segment.RouletteColour.Zero)
+	power_up.texture_normal = preload("res://assets/png/power_clover.png")
+	power_up.scale.x = 0.4
+	power_up.scale.y = 0.4
+	return power_up
+	
 var colour: Segment.RouletteColour
 
 func _init(c: Segment.RouletteColour) -> void:
@@ -34,4 +41,4 @@ func activate() -> void:
 	game.event_bus.help_text.emit("Click a segment to make it %s" % ["black" if colour == Segment.RouletteColour.Black else "red"])
 
 func description() -> String:
-	return "Make a segment %s" % Segment.RouletteColour.find_key(colour)
+	return "Make a segment %s coloured" % Segment.RouletteColour.find_key(colour)

@@ -19,12 +19,14 @@ static func random_power_up() -> PowerUp:
 	var power_ups: Array = [
 		PowerUpMakeColour.new_black,
 		PowerUpMakeColour.new_red,
+		PowerUpMakeColour.new_zero,
 		PowerUpDuplicateSegment.make,
 		PowerUpDuplicatePowerUp.make,
 	]
 	var weights: Array[int] = [
 		12 * BASIC_WEIGHT, # make red
 		12 * BASIC_WEIGHT, # make black
+		BASIC_WEIGHT, # make zero
 		SEGEMENT_DUPLICATE_WEIGHT,
 		POWER_UP_DUPLICATE_WEIGHT,
 		100, # red ball
