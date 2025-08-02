@@ -18,7 +18,9 @@ func _init(num: int) -> void:
 func segment_clicked(segment: Segment) -> void:
 	segment.number = number
 	game.event_bus.segment_clicked.disconnect(segment_clicked)
+	game.event_bus.help_text.emit("")
 
 func activate() -> void:
 	super.activate()
 	game.event_bus.segment_clicked.connect(segment_clicked)
+	game.event_bus.help_text.emit("Click a segment to make it %d" % number)

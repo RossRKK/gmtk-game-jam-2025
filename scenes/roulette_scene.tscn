@@ -62,10 +62,10 @@ text = "$$$$"
 horizontal_alignment = 1
 
 [node name="Resulttext" type="RichTextLabel" parent="."]
-offset_left = -50.0
-offset_top = 466.0
+offset_left = 9.0
+offset_top = 430.0
 offset_right = 505.0
-offset_bottom = 522.0
+offset_bottom = 546.0
 theme = ExtResource("5_4tu1h")
 horizontal_alignment = 1
 script = ExtResource("5_r8avv")

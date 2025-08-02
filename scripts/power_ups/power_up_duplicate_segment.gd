@@ -17,12 +17,15 @@ var base_segment: Segment = null
 func segment_clicked(segment: Segment) -> void:
 	if base_segment == null:
 		base_segment = segment
+		game.event_bus.help_text.emit("Click again to paste the segment")
 	else:
 		segment.colour = base_segment.colour
 		segment.number = base_segment.number
 		segment.segment_effect = base_segment.segment_effect
 		game.event_bus.segment_clicked.disconnect(segment_clicked)
+		game.event_bus.help_text.emit("")
 
 func activate() -> void:
 	super.activate()
 	game.event_bus.segment_clicked.connect(segment_clicked)
+	game.event_bus.help_text.emit("Click a segment to copy it")
