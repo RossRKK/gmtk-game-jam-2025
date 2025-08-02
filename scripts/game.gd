@@ -7,6 +7,23 @@ const WHEEL_SIZE = 24
 var event_bus: EventBus = EventBus.new()
 var player_inventory: PlayerInventory = PlayerInventory.new()
 
+var base_minimum_bet := 100.
+
+var NUM_SPINS_PER_LEVEL := 8
+
+var num_spins := 0
+
+func _init() -> void:
+	event_bus.spin_start.connect(spin_started)
+
+func spin_started():
+	num_spins += 1
+
+func level() -> int:
+	return floor(num_spins/NUM_SPINS_PER_LEVEL) + 1
+
+func minimum_bet() -> float:
+	return base_minimum_bet * (level() ** 2)
 
 static var instance: Game = Game.new()
 

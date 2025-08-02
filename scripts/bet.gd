@@ -11,11 +11,11 @@ enum BetType {
 var game: Game = Game.get_instance()
 
 var bet_type: BetType
-var bet_amount: int
-var additional_winnings: int = 0
+var bet_amount: float
+var additional_winnings: float = 0
 
 
-func _init(ba: int, bt: BetType) -> void:
+func _init(ba: float, bt: BetType) -> void:
 	bet_amount = ba
 	bet_type = bt
 
@@ -24,7 +24,7 @@ func debug_print() -> void:
 	var type_name = bet_types[bet_type] if bet_type < bet_types.size() else "Unknown"
 	print("Bet[%s: $%d, +$%d win, total: $%d]" % [type_name, bet_amount, additional_winnings, bet_amount + additional_winnings])
 
-func resolve(segment: Segment) -> int:
+func resolve(segment: Segment) -> float:
 	var winner = \
 		(bet_type == BetType.Red and segment.colour == Segment.RouletteColour.Red) \
 		or (bet_type == BetType.Black and segment.colour == Segment.RouletteColour.Black) \

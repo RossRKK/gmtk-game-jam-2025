@@ -1,6 +1,10 @@
 class_name PowerUp
 extends TextureButton
 
+var game: Game = Game.get_instance()
+
+@export var base_price: float = 100
+
 static func random_power_up() -> PowerUp:
 	var power_up := PowerUp.new()
 	
@@ -23,8 +27,12 @@ func activate() -> void:
 	pass
 
 
+func price() -> float:
+	return base_price * game.level()
+
 func _on_pressed() -> void:
 	print("Click")
 	# TODO tell the slot machine to remove us
+	# TODO charge the player the price
 	disabled = true # disbale the button to prevent a double activate
 	activate()
