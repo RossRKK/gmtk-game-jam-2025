@@ -9,9 +9,13 @@ const BASIC_WEIGHT = 1
 const SEGEMENT_DUPLICATE_WEIGHT = 6
 const POWER_UP_DUPLICATE_WEIGHT = 4
 
+const MAGNET_WEIGHT = 6
+
 @export var base_price: float = 100
 
 static func random_power_up() -> PowerUp:
+	var magnet_curve = preload("res://resources/segment_effects/magnet_segment_curve.tres")
+	var repolsor_curve = preload("res://resources/segment_effects/repulsor_segment_curve.tres")
 	var balls: Array = [
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Red),
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Black),
@@ -22,6 +26,8 @@ static func random_power_up() -> PowerUp:
 		PowerUpMakeColour.new_zero,
 		PowerUpDuplicateSegment.make,
 		PowerUpDuplicatePowerUp.make,
+		PowerUpMagnet.make.bind(magnet_curve, 500.,"Magnetised", "The ball is more likely to land near here", "Make your own luck. Make the ball more likely to land in a segment or it's neighbours"),
+		PowerUpMagnet.make.bind(repolsor_curve, 500.,"Repellent", "The ball is less likely to land near here", "Make your own luck. Make the ball less likely to land in a segment or it's neighbours"),
 	]
 	var weights: Array[int] = [
 		12 * BASIC_WEIGHT, # make red
@@ -29,8 +35,12 @@ static func random_power_up() -> PowerUp:
 		BASIC_WEIGHT, # make zero
 		SEGEMENT_DUPLICATE_WEIGHT,
 		POWER_UP_DUPLICATE_WEIGHT,
-		100, # red ball
-		100, # black ball
+		MAGNET_WEIGHT, # magnet
+		MAGNET_WEIGHT, # replusor
+		
+		# these are added after the hard coded ones
+		12 * BASIC_WEIGHT, # red ball
+		12 * BASIC_WEIGHT, # black ball
 	]
 	
 	for ball_factory in balls:
