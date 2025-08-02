@@ -42,11 +42,14 @@ var stop_rotation: float
 var ball_offset = Vector2.UP * ball_distance + Vector2.LEFT * 16
 
 func _ready() -> void:
-	ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Red))
-	ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Black))
+	ball_queue.enqueue(GolfBall.make_golf_ball())
 	
-	for i in range(6):
-		ball_queue.enqueue(RouletteBall.make_basic_ball())
+	for i in range(8):
+		match i % 3:
+			1: ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Red))
+			2: ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Black))
+			_: ball_queue.enqueue(RouletteBall.make_basic_ball())
+		
 	
 	receive_ball(ball_queue.dequeue())
 
