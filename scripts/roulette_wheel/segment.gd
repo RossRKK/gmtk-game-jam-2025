@@ -69,7 +69,10 @@ var tool_tip_id: int = -1
 
 func mouse_entered() -> void:
 	is_highlighted = true
-	tool_tip_id = game.tool_tip.show_tool_tip("%s %d\n%s\n%s" % [RouletteColour.find_key(colour), number, segment_effect.effect_description, segment_effect.effect_description])
+	var zero_text = "\nBetting on Zero x12 your winnings" if colour == RouletteColour.Zero else ""
+	var tooltip = "%s %d%s\n%s\n%s" % [RouletteColour.find_key(colour), number, zero_text, segment_effect.effect_description, segment_effect.effect_description]
+	tool_tip_id = game.tool_tip.show_tool_tip(tooltip)
+	
 
 	
 func mouse_exited() -> void:

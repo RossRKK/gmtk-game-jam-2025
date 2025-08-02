@@ -94,6 +94,7 @@ fit_content = true
 scroll_active = false
 
 [node name="pixelate" parent="." instance=ExtResource("2_wwc13")]
+visible = false
 
 [node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
 visible = false

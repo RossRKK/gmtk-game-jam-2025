@@ -34,6 +34,8 @@ func resolve(segment: Segment) -> float:
 		
 	if winner:
 		var total_winnings = bet_amount + additional_winnings
+		if segment.colour == Segment.RouletteColour.Zero:
+			total_winnings *= 12
 		game.player_inventory.update_money(total_winnings)
 		return total_winnings
 	else:
