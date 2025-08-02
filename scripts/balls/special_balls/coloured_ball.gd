@@ -1,7 +1,6 @@
 class_name ColouredBall
 extends RouletteBall
 
-var game : Game = Game.get_instance()
 
 @export var colour: Segment.RouletteColour
 
@@ -10,20 +9,17 @@ var game : Game = Game.get_instance()
 @export var bet_multiplier_bonus: float = 0.
 
 static func make_coloured_ball(c: Segment.RouletteColour) -> ColouredBall:
-	var sprite = Sprite2D.new()
-	sprite.texture = preload("res://assets/png/ball_base.png")
-	sprite.scale *= SPRITE_SCALE
-	sprite.modulate = Segment.get_colour_for_roulette_colour(c, true)
-	return ColouredBall.new(c, sprite)
+	return ColouredBall.new(c)
 
 func bet_type_matches_colour(bet_type: Bet.BetType) -> bool:
 	return (colour == Segment.RouletteColour.Red and bet_type == Bet.BetType.Red) \
 		or (colour == Segment.RouletteColour.Black and bet_type == Bet.BetType.Black) \
 		or (colour == Segment.RouletteColour.Zero and bet_type == Bet.BetType.Zero)
 
-func _init(c: Segment.RouletteColour, s: Sprite2D) -> void:
-	super(s)
+func _init(c: Segment.RouletteColour) -> void:
+	super()
 	colour = c
+	modulate = Segment.get_colour_for_roulette_colour(c, true)
 
 
 func segment_affinity(segment: Segment) -> float:

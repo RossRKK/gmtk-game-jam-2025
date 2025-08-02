@@ -7,8 +7,8 @@ static func make_with_ball(make_ball: Callable) -> PowerUpBall:
 	var ball_instance: RouletteBall = make_ball.call()
 	var power_up = PowerUpBall.new(ball_instance)
 	
-	power_up.texture_normal = ball_instance.sprite.texture
-	power_up.modulate = ball_instance.sprite.modulate
+	power_up.texture_normal = ball_instance.texture_normal
+	power_up.modulate = ball_instance.modulate
 	power_up.scale.x = 0.4
 	power_up.scale.y = 0.4
 	return power_up

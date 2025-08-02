@@ -15,7 +15,7 @@ var game: Game = Game.get_instance()
 
 @onready var segment_handler: SegmentHandler = $SegmentHandler
 
-@onready var ball_distance: float = 160.0
+var ball_distance: float = 160.0
 
 @onready var ball_queue: BallQueue = get_parent().get_node("BallQueue")
 
@@ -39,6 +39,8 @@ var target_rotation: float = 0.
 var ball_initial_rotation: float = 0.
 var stop_rotation: float
 
+var ball_offset = Vector2.UP * ball_distance + Vector2.LEFT * 16
+
 func _ready() -> void:
 	ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Red))
 	ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Black))
@@ -55,7 +57,7 @@ func next_ball():
 
 func receive_ball(b: RouletteBall) -> void:
 	ball = b
-	ball.position = Vector2.UP * ball_distance
+	ball.position = ball_offset
 	add_child(ball)
 
 func _start_spin(bs: Array[Bet]) -> void:
@@ -90,6 +92,8 @@ func _stop_return() -> void:
 func get_normalised_time(timer: Timer) -> float:
 	return 1 - (timer.time_left / timer.wait_time)
 
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var state_timer: Timer = state_timers.get(state)
@@ -102,7 +106,7 @@ func _process(delta: float) -> void:
 		self.position.x += sin(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		self.position.y += cos(normalised_time * wobble_frequency * PI) * speed_at_time * wobble_amplitude
 		
-		ball.position = Vector2.UP.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time))) * ball_distance
+		ball.position = ball_offset.rotated(lerp_angle(ball_initial_rotation, target_rotation, ball_curve.sample(normalised_time)))
 	
 	if state == WheelState.Returning:
 		self.rotation = lerp_angle(stop_rotation, 0, return_curve.sample(normalised_time))
