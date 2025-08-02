@@ -117,8 +117,8 @@ toggle_mode = true
 button_pressed = true
 action_mode = 0
 texture_normal = ExtResource("5_7v1fh")
-texture_pressed = ExtResource("6_pputl")
 texture_hover = ExtResource("6_pputl")
+texture_disabled = ExtResource("6_pputl")
 
 [node name="SpinTimer" type="Timer" parent="."]
 wait_time = 3.0
