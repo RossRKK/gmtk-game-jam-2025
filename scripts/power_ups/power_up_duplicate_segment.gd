@@ -9,6 +9,7 @@ static func make() -> PowerUpDuplicateSegment:
 	return power_up
 	
 func _init() -> void:
+	super()
 	base_price = 1_000.
 
 

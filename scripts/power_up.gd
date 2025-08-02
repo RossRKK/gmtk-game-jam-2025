@@ -7,6 +7,7 @@ static var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 const BASIC_WEIGHT = 1
 const SEGEMENT_DUPLICATE_WEIGHT = 6
+const POWER_UP_DUPLICATE_WEIGHT = 4
 
 @export var base_price: float = 100
 
@@ -15,11 +16,13 @@ static func random_power_up() -> PowerUp:
 		PowerUpMakeColour.new_black,
 		PowerUpMakeColour.new_red,
 		PowerUpDuplicateSegment.make,
+		PowerUpDuplicatePowerUp.make,
 	]
 	var weights: Array[int] = [
 		12 * BASIC_WEIGHT, 
 		12 * BASIC_WEIGHT, 
-		SEGEMENT_DUPLICATE_WEIGHT
+		SEGEMENT_DUPLICATE_WEIGHT,
+		POWER_UP_DUPLICATE_WEIGHT,
 	]
 	
 	for i in range(Game.get_instance().WHEEL_SIZE):
@@ -34,8 +37,7 @@ static func random_power_up() -> PowerUp:
 
 
 func _init() -> void:
-	texture_normal = preload("res://assets/png/chip-black.png")
-	texture_hover = preload("res://assets/png/chip-red.png")
+	game = Game.get_instance()
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	
 func _ready() -> void:
@@ -47,7 +49,7 @@ func activate() -> void:
 
 
 func price() -> float:
-	return base_price * (game.level() ** 2)
+	return base_price * (Game.get_instance().level() ** 2)
 
 func _on_pressed() -> void:
 	# just cheat and remove our texture and disable
@@ -58,3 +60,4 @@ func _on_pressed() -> void:
 	
 	game.player_inventory.update_money(-price())
 	activate()
+	game.last_used_power_up = self

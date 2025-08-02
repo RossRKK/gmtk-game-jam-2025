@@ -18,6 +18,7 @@ static func new_red() -> PowerUpMakeColour:
 var colour: Segment.RouletteColour
 
 func _init(c: Segment.RouletteColour) -> void:
+	super()
 	base_price = 100.
 	colour = c
 

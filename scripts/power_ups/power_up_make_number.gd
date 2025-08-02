@@ -10,7 +10,8 @@ static func make_with_number(num: int) -> PowerUpMakeNumber:
 	power_up.scale.y = 0.2
 	return power_up
 
-func _init(num: int) -> void:
+func _init(num: int) -> void: 
+	super()
 	base_price = 100.
 	number = num
 
