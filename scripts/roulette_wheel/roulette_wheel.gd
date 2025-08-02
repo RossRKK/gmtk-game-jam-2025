@@ -40,8 +40,8 @@ var ball_initial_rotation: float = 0.
 var stop_rotation: float
 
 func _ready() -> void:
-	ball_queue.enqueue(ColouredBall.make_coloured_sprite(Segment.RouletteColour.Red))
-	ball_queue.enqueue(ColouredBall.make_coloured_sprite(Segment.RouletteColour.Black))
+	ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Red))
+	ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Black))
 	
 	for i in range(6):
 		ball_queue.enqueue(RouletteBall.make_basic_ball())

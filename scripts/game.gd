@@ -15,6 +15,8 @@ var num_spins := 0
 
 var last_used_power_up: PowerUp
 
+var roulette_wheel: RouletteWheel
+
 func _init() -> void:
 	event_bus.spin_start.connect(spin_started)
 

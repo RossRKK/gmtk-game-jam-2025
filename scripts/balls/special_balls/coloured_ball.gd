@@ -8,7 +8,7 @@ var game : Game = Game.get_instance()
 @export var bet_multiplier: float = 1.2
 @export var bet_multiplier_bonus: float = 0.
 
-static func make_coloured_sprite(c: Segment.RouletteColour) -> ColouredBall:
+static func make_coloured_ball(c: Segment.RouletteColour) -> ColouredBall:
 	var sprite = Sprite2D.new()
 	sprite.texture = preload("res://assets/png/ball_base.png")
 	sprite.scale *= SPRITE_SCALE

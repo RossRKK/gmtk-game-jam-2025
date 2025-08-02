@@ -12,6 +12,10 @@ const POWER_UP_DUPLICATE_WEIGHT = 4
 @export var base_price: float = 100
 
 static func random_power_up() -> PowerUp:
+	var balls: Array = [
+		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Red),
+		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Black),
+	]
 	var power_ups: Array = [
 		PowerUpMakeColour.new_black,
 		PowerUpMakeColour.new_red,
@@ -19,15 +23,22 @@ static func random_power_up() -> PowerUp:
 		PowerUpDuplicatePowerUp.make,
 	]
 	var weights: Array[int] = [
-		12 * BASIC_WEIGHT, 
-		12 * BASIC_WEIGHT, 
+		12 * BASIC_WEIGHT, # make red
+		12 * BASIC_WEIGHT, # make black
 		SEGEMENT_DUPLICATE_WEIGHT,
 		POWER_UP_DUPLICATE_WEIGHT,
+		100, # red ball
+		100, # black ball
 	]
+	
+	for ball_factory in balls:
+		power_ups.append(PowerUpBall.make_with_ball.bind(ball_factory))
 	
 	for i in range(Game.get_instance().WHEEL_SIZE):
 		weights.append(BASIC_WEIGHT)
 		power_ups.append(PowerUpMakeNumber.make_with_number.bind(i))
+		
+	
 		
 	var power_up: PowerUp = power_ups[random.rand_weighted(weights)].call()
 
