@@ -72,12 +72,6 @@ theme = ExtResource("5_4tu1h")
 horizontal_alignment = 1
 script = ExtResource("5_r8avv")
 
-[node name="pixelate" parent="." instance=ExtResource("2_wwc13")]
-visible = false
-
-[node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
-visible = false
-
 [node name="ToolTip" type="Node2D" parent="."]
 visible = false
 position = Vector2(-321, 18)
@@ -98,5 +92,10 @@ theme = ExtResource("10_oygq2")
 text = "This is the tooltip"
 fit_content = true
 scroll_active = false
+
+[node name="pixelate" parent="." instance=ExtResource("2_wwc13")]
+
+[node name="CRTEffect" parent="." instance=ExtResource("1_8h7hl")]
+visible = false
 
 [connection signal="submit_bet" from="BettingBoard" to="RouletteWheel" method="_start_spin"]

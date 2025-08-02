@@ -15,8 +15,6 @@ func _ready() -> void:
 			var colour: Segment.RouletteColour = Segment.RouletteColour.Black if random.randi_range(0, 1) == 0 else Segment.RouletteColour.Red
 			add_child(Segment.new(colour, random.randi_range(1, game.WHEEL_SIZE - 2), i))
 
-
-	
 func get_segment_curve(segment) -> Curve:
 	return segment.segment_effect.probability_effect
 	
