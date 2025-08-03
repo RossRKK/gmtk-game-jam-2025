@@ -25,9 +25,9 @@ var game: Game = Game.get_instance()
 
 @onready var bet_text: TextEdit = $BetText
 
-var bet_increment: int = 100
+var bet_increment: float = 100.
 
-var remaining_funds: int = game.player_inventory.available_money
+var remaining_funds: float = game.player_inventory.available_money
 
 @onready var bet: Bet = Bet.new(0, bet_type):
 	set(value):

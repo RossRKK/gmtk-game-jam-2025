@@ -44,7 +44,7 @@ var ball_offset_out = Vector2.UP * ball_distance
 
 func _ready() -> void:
 	
-	for i in range(8):
+	for i in range(game.NUM_SPINS_PER_LEVEL):
 		match i % 3:
 			1: ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Red))
 			2: ball_queue.enqueue(ColouredBall.make_coloured_ball(Segment.RouletteColour.Black))

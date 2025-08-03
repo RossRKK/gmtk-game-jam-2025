@@ -2,7 +2,7 @@ extends Node
 
 class_name PlayerInventory
 
-@export var starting_money: float = 10_000.
+@export var starting_money: float = 1_000.
 
 signal on_money_changed(new_value: float, diff: float)
 

@@ -7,9 +7,9 @@ const WHEEL_SIZE = 24
 var event_bus: EventBus = EventBus.new()
 var player_inventory: PlayerInventory = PlayerInventory.new()
 
-var base_minimum_bet := 100.
+var base_minimum_bet := 200.
 
-var NUM_SPINS_PER_LEVEL := 8
+var NUM_SPINS_PER_LEVEL := 4
 
 var num_spins := 0
 
