@@ -41,8 +41,8 @@ static func random_power_up() -> PowerUp:
 		12 * BASIC_WEIGHT, # make red
 		12 * BASIC_WEIGHT, # make black
 		BASIC_WEIGHT, # make zero
-		1000, #SEGEMENT_DUPLICATE_WEIGHT,
-		1000,#POWER_UP_DUPLICATE_WEIGHT,
+		SEGEMENT_DUPLICATE_WEIGHT,
+		POWER_UP_DUPLICATE_WEIGHT,
 		MAGNET_WEIGHT, # magnet
 		MAGNET_WEIGHT, # replusor
 		MAGNET_WEIGHT, # banana

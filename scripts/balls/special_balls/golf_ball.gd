@@ -15,6 +15,7 @@ func _init() -> void:
 	sound_effect.stream = preload("res://assets/sound/nice-shot.mp3")
 
 func _ready() -> void:
+	super._ready()
 	add_child(sound_effect)
 
 func segment_affinity(segment: Segment) -> float:
