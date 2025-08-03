@@ -24,6 +24,7 @@ static func random_power_up() -> PowerUp:
 		EightBall.make_eight_ball,
 		SwitcherBall.make_switcher_ball,
 		PrimeBall.make_prime_ball.bind(3),
+		OddBall.make_odd_ball,
 	]
 	var power_ups: Array = [
 		PowerUpMakeColour.new_black,
@@ -53,6 +54,7 @@ static func random_power_up() -> PowerUp:
 		12, # eight ball
 		6, # switcher ball
 		12, # prime ball
+		12, # odd ball
 	]
 	
 	for ball_factory in balls:
