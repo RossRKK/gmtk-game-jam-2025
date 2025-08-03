@@ -7,7 +7,7 @@ static func make_switcher_ball() -> SwitcherBall:
 
 func _init() -> void:
 	super()
-	modulate = Color(.8, .8, 0.)
+	texture_normal = preload("res://assets/png/ball_switcher.png")
 
 
 func segment_affinity(segment: Segment) -> float:
@@ -18,7 +18,7 @@ func ball_effect(segment: Segment, bet: Bet) -> Bet:
 		Segment.RouletteColour.Red:
 			segment.colour = Segment.RouletteColour.Black
 		Segment.RouletteColour.Black:
-			segment.colour = Segment.RouletteColour.Black
+			segment.colour = Segment.RouletteColour.Red
 	
 	return bet
 

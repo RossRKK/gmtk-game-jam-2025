@@ -7,7 +7,8 @@ static func make_eight_ball() -> EightBall:
 
 func _init() -> void:
 	super()
-	modulate = Color(0., 0., 0.)
+	#modulate = Color(0., 0., 0.)
+	texture_normal = preload("res://assets/png/ball_8.png")
 
 
 func segment_affinity(segment: Segment) -> float:

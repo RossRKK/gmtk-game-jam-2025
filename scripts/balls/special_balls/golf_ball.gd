@@ -8,7 +8,8 @@ var sound_effect: AudioStreamPlayer2D
 
 func _init() -> void:
 	super()
-	modulate = Color(0., .8, 0.)
+	#modulate = Color(0., .8, 0.)
+	texture_normal = preload("res://assets/png/ball_golf.png")
 	
 	sound_effect = AudioStreamPlayer2D.new()
 	sound_effect.stream = preload("res://assets/sound/nice-shot.mp3")
