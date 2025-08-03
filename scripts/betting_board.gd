@@ -42,7 +42,7 @@ func handle_bet_amount():
 		total_bet = 0
 		
 	$MinBetText.text = "$%d" % [game.minimum_bet()]
-	if total_bet < game.minimum_bet():
+	if total_bet < game.minimum_bet() or total_bet > game.player_inventory.available_money:
 		BetZone.toggle_button($SpinButton, false)
 	else:
 		BetZone.toggle_button($SpinButton, true)
