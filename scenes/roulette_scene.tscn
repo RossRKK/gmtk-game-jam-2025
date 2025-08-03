@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhyms0lpvrve6"]
+[gd_scene load_steps=14 format=3 uid="uid://dhyms0lpvrve6"]
 
 [ext_resource type="PackedScene" uid="uid://blbams3bsbfjm" path="res://scenes/post_processing_effects/crt_effect.tscn" id="1_8h7hl"]
 [ext_resource type="Script" uid="uid://ihpwiim42g6l" path="res://scripts/roulette_scene.gd" id="1_nh752"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://bd6fh0c2rceq5" path="res://scripts/result_text.gd" id="5_r8avv"]
 [ext_resource type="Script" uid="uid://x11m5fkbtgsf" path="res://scripts/tool_tip.gd" id="10_bfvbi"]
 [ext_resource type="Theme" uid="uid://croornac4nhwc" path="res://scenes/slot_machine_text.tres" id="10_oygq2"]
+[ext_resource type="Script" uid="uid://hn3dfqg2yyy3" path="res://scenes/game_over_screen.gd" id="12_1vu7y"]
+[ext_resource type="Theme" uid="uid://cwim6vkryhpcx" path="res://scenes/game_over.tres" id="12_s4qt0"]
 
 [node name="RouletteScene" type="Node2D"]
 script = ExtResource("1_nh752")
@@ -106,4 +108,25 @@ text = "Label"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOverScreen" type="Node2D" parent="."]
+position = Vector2(517, 388)
+script = ExtResource("12_1vu7y")
+
+[node name="GameOverLabel" type="RichTextLabel" parent="GameOverScreen"]
+offset_right = 415.0
+offset_bottom = 112.0
+theme = ExtResource("12_s4qt0")
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameOverScreen"]
+offset_left = 120.0
+offset_top = 90.0
+offset_right = 317.0
+offset_bottom = 156.0
+theme = ExtResource("12_s4qt0")
+text = "Reset"
+
 [connection signal="submit_bet" from="BettingBoard" to="RouletteWheel" method="_start_spin"]
+[connection signal="pressed" from="GameOverScreen/Button" to="GameOverScreen" method="_on_button_pressed"]

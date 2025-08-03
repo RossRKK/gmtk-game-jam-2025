@@ -35,3 +35,9 @@ static var instance: Game = Game.new()
 
 static func get_instance() -> Game:
 	return instance
+
+static func reset() -> void:
+	var tree = instance.roulette_wheel.get_tree()
+	instance = Game.new()
+	tree.change_scene_to_file("res://scenes/roulette_scene.tscn")
+	

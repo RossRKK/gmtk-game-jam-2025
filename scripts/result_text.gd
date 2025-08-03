@@ -6,7 +6,6 @@ var game: Game = Game.get_instance()
 func _ready() -> void:
 	game.event_bus.announce_result.connect(update_result_text)
 	game.event_bus.help_text.connect(update_help_text)
-	game.event_bus.game_over.connect(game_over)
 
 
 func update_result_text(segment: Segment, winnings: float) -> void:
@@ -14,7 +13,3 @@ func update_result_text(segment: Segment, winnings: float) -> void:
 
 func update_help_text(help_text: String) -> void:
 	text = help_text
-	
-func game_over() -> void:
-	print("Game Over!")
-	text = "Game Over!"
