@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwslltnvmerrq"]
+[gd_scene load_steps=6 format=3 uid="uid://dwslltnvmerrq"]
 
 [ext_resource type="Script" uid="uid://dsdw1682571ug" path="res://scripts/bet_zone.gd" id="1_wwqtj"]
 [ext_resource type="Theme" uid="uid://774qwrnpcvo5" path="res://scenes/text_theme.tres" id="2_1vpie"]
+[ext_resource type="Theme" uid="uid://bcnt4107hclm1" path="res://arrow.tres" id="2_f41xx"]
+[ext_resource type="Texture2D" uid="uid://cfhwnrh5ibjog" path="res://assets/svg/up-arrrow.svg" id="3_f41xx"]
+[ext_resource type="Texture2D" uid="uid://rlskhqac5mme" path="res://assets/svg/down-arrrow.svg" id="3_ia1iq"]
 
 [node name="BetZone" type="Node2D"]
 script = ExtResource("1_wwqtj")
@@ -17,8 +20,8 @@ offset_top = 63.0
 offset_right = 257.0
 offset_bottom = 116.0
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_1vpie")
-text = "⬇"
+theme = ExtResource("2_f41xx")
+icon = ExtResource("3_ia1iq")
 
 [node name="Up" type="Button" parent="."]
 offset_left = 178.0
@@ -26,9 +29,8 @@ offset_top = 3.0
 offset_right = 257.0
 offset_bottom = 56.0
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_1vpie")
-text = "⬆
-"
+theme = ExtResource("2_f41xx")
+icon = ExtResource("3_f41xx")
 
 [node name="Dollar" type="RichTextLabel" parent="."]
 offset_left = 2.0

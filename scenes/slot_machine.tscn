@@ -57,6 +57,7 @@ script = ExtResource("1_xjw1r")
 metadata/_custom_type_script = "uid://b7v1503uwjkpd"
 
 [node name="TopShade" type="ColorRect" parent="Backdrop"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 1.0
 offset_right = 118.0
@@ -64,6 +65,7 @@ offset_bottom = 41.0
 color = Color(0, 0, 0, 0.196078)
 
 [node name="BottomShade" type="ColorRect" parent="Backdrop"]
+layout_mode = 0
 offset_top = 76.0
 offset_right = 119.0
 offset_bottom = 110.0
