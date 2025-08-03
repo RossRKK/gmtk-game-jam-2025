@@ -98,15 +98,20 @@ func price() -> float:
 	return base_price * (Game.get_instance().level() ** 2)
 
 func _on_pressed() -> void:
-	# just cheat and remove our texture and disable
-	texture_normal = null
-	texture_hover = null
-	mouse_default_cursor_shape = Control.CURSOR_ARROW
-	disabled = true # disable the button to prevent a double activate
-	
-	game.player_inventory.update_money(-price())
-	activate()
-	game.last_used_power_up = self
+	if game.player_inventory.available_money > (price() + game.minimum_bet()):
+		# just cheat and remove our texture and disable
+		texture_normal = null
+		texture_hover = null
+		mouse_default_cursor_shape = Control.CURSOR_ARROW
+		disabled = true # disable the button to prevent a double activate
+		game.player_inventory.update_money(-price())
+		activate()
+		game.last_used_power_up = self
+	else:
+		var reject_sound = AudioStreamPlayer2D.new()
+		reject_sound.stream = preload("res://assets/sound/reject.wav")
+		add_child(reject_sound)
+		reject_sound.play()
 
 
 func description():
