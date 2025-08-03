@@ -22,6 +22,7 @@ static func random_power_up() -> PowerUp:
 		ColouredBall.make_coloured_ball.bind(Segment.RouletteColour.Black),
 		GolfBall.make_golf_ball,
 		EightBall.make_eight_ball,
+		SwitcherBall.make_switcher_ball,
 	]
 	var power_ups: Array = [
 		PowerUpMakeColour.new_black,
@@ -49,6 +50,7 @@ static func random_power_up() -> PowerUp:
 		12 * BASIC_WEIGHT, # black ball
 		6, # golf ball
 		12, # eight ball
+		6, # switcher ball
 	]
 	
 	for ball_factory in balls:
