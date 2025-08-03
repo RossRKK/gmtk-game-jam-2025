@@ -32,9 +32,9 @@ static func random_power_up() -> PowerUp:
 		PowerUpMakeColour.new_zero,
 		PowerUpDuplicateSegment.make,
 		PowerUpDuplicatePowerUp.make,
-		PowerUpMagnet.make.bind(magnet_curve, 500.,"Magnetised", "The ball is more likely to land near here", "Make your own luck. Make the ball more likely to land in a segment or it's neighbours"),
-		PowerUpMagnet.make.bind(repolsor_curve, 500.,"Repellent", "The ball is less likely to land near here", "Make your own luck. Make the ball less likely to land in a segment or it's neighbours"),
-		PowerUpMagnet.make.bind(banana_curve, 500.,"Slippery", "The ball will slip passed here into the next segment", "Slick up a segment so that the ball lands in the next space"),
+		PowerUpMagnet.make.bind(magnet_curve, 200.,"Magnetised", "The ball is more likely to land near here", "Make your own luck. Make the ball more likely to land in a segment or it's neighbours"),
+		PowerUpMagnet.make.bind(repolsor_curve, 200.,"Repellent", "The ball is less likely to land near here", "Make your own luck. Make the ball less likely to land in a segment or it's neighbours"),
+		PowerUpMagnet.make.bind(banana_curve, 200.,"Slippery", "The ball will slip passed here into the next segment", "Slick up a segment so that the ball lands in the next space"),
 
 	]
 	var weights: Array[int] = [
@@ -63,9 +63,7 @@ static func random_power_up() -> PowerUp:
 	for i in range(Game.get_instance().WHEEL_SIZE):
 		weights.append(BASIC_WEIGHT)
 		power_ups.append(PowerUpMakeNumber.make_with_number.bind(i))
-		
-	
-		
+
 	var power_up: PowerUp = power_ups[random.rand_weighted(weights)].call()
 
 	

@@ -16,4 +16,5 @@ func update_help_text(help_text: String) -> void:
 	text = help_text
 	
 func game_over() -> void:
+	print("Game Over!")
 	text = "Game Over!"

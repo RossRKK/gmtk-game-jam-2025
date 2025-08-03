@@ -10,7 +10,7 @@ static func make() -> PowerUpDuplicateSegment:
 	
 func _init() -> void:
 	super()
-	base_price = 1_000.
+	base_price = 300.
 
 
 var base_segment: Segment = null
