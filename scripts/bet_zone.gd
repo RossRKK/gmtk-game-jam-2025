@@ -53,9 +53,10 @@ func _ready() -> void:
 	
 	game.event_bus.spin_complete.connect(unlock)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	bet.bet_amount = int(bet_text.text)
+	bet_updated.emit(bet)
+
 	
 static func toggle_button(button: Button, enabled: bool):
 	if enabled:
@@ -74,7 +75,7 @@ func lock() -> void:
 func unlock() -> void:
 	toggle_button($Down, true)
 	toggle_button($Up, true)
-	bet_text.editable = false
+	bet_text.editable = true
 
 func set_button_state() -> void:
 	toggle_button($Down, true)

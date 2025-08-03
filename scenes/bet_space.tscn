@@ -59,7 +59,7 @@ offset_top = 65.0
 offset_right = 167.0
 offset_bottom = 115.0
 theme = ExtResource("2_1vpie")
-editable = false
+text = "0"
 
 [connection signal="pressed" from="Down" to="." method="decrease_bet"]
 [connection signal="pressed" from="Up" to="." method="increase_bet"]
