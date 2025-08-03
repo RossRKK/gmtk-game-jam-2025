@@ -115,6 +115,16 @@ texture_normal = ExtResource("5_7v1fh")
 texture_hover = ExtResource("6_pputl")
 texture_disabled = ExtResource("6_pputl")
 
+[node name="SpinCostLabel" type="RichTextLabel" parent="."]
+offset_left = -62.0
+offset_top = 67.0
+offset_right = 64.0
+offset_bottom = 85.0
+theme = ExtResource("4_2e0ow")
+text = "$$$$ per Spin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SpinTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true

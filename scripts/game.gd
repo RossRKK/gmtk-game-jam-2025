@@ -18,7 +18,6 @@ var last_used_power_up: PowerUp
 var roulette_wheel: RouletteWheel
 
 var tool_tip: ToolTip
-
 func _init() -> void:
 	event_bus.spin_start.connect(spin_started)
 

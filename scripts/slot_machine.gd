@@ -10,8 +10,13 @@ func get_spin_cost() -> float:
 	return spin_base_cost * game.level() ** 2
 
 func _ready() -> void:
+	game.event_bus.spin_complete.connect(update_cost_label)
+	update_cost_label()
 	start_spin()
-
+	
+func update_cost_label() -> void:
+	$SpinCostLabel.text = "$%d per Spin" % get_spin_cost()
+	
 func enter_coin():
 	$Arm.disabled = true
 	$Arm.mouse_default_cursor_shape = Control.CURSOR_ARROW
