@@ -28,8 +28,12 @@ func segment_clicked(segment: Segment) -> void:
 
 func activate() -> void:
 	super.activate()
+	if base_segment:
+		game.event_bus.help_text.emit("Click to paste the segment")
+	else:
+		game.event_bus.help_text.emit("Click a segment to copy it")
+	
 	game.event_bus.segment_clicked.connect(segment_clicked)
-	game.event_bus.help_text.emit("Click a segment to copy it")
 
 func description() -> String:
 	return "Duplicate a wheel segment"

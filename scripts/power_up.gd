@@ -41,8 +41,8 @@ static func random_power_up() -> PowerUp:
 		12 * BASIC_WEIGHT, # make red
 		12 * BASIC_WEIGHT, # make black
 		BASIC_WEIGHT, # make zero
-		SEGEMENT_DUPLICATE_WEIGHT,
-		POWER_UP_DUPLICATE_WEIGHT,
+		1000, #SEGEMENT_DUPLICATE_WEIGHT,
+		1000,#POWER_UP_DUPLICATE_WEIGHT,
 		MAGNET_WEIGHT, # magnet
 		MAGNET_WEIGHT, # replusor
 		MAGNET_WEIGHT, # banana
@@ -78,6 +78,7 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
+
 
 var tool_tip_id = -1
 
